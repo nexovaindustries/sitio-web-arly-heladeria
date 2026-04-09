@@ -65,15 +65,18 @@
     
     <style>
         .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24 }
-        body { 
-            font-family: "Plus Jakarta Sans", sans-serif; 
-            background-color: #faf9f6; 
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background-color: #faf9f6;
             background-image: url('assets/drip_bg.png');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
-            color: #1a1c1a; 
-            scroll-behavior: smooth; 
+            color: #1a1c1a;
+            scroll-behavior: smooth;
+        }
+        @media (max-width: 768px) {
+            body { background-attachment: scroll; }
         }
         h1, h2, h3, h4 { font-family: "Noto Serif", serif; letter-spacing: -0.02em; }
         
@@ -198,22 +201,26 @@
             z-index: 5;
         }
 
-        @media (max-width: 768px) { 
+        /* Mobile menu */
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
+
+        @media (max-width: 768px) {
             .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; }
-            .logo-image-nav { height: 35px; margin-right: 5px; }
-            .drip-title { font-size: 1.1rem; }
+            .logo-image-nav { height: 38px; margin-right: 4px; }
+            .drip-title { font-size: 1.05rem; }
             .drip-drop { display: none; }
-            h1 { font-size: 3.2rem !important; line-height: 1.1 !important; }
+            h1 { font-size: 3rem !important; line-height: 1.1 !important; }
             .glass-card { padding: 1.5rem; border-radius: 1.5rem; }
             .catalog-section { padding: 1.5rem !important; border-radius: 2rem; }
-            .map-wrapper { height: 350px !important; }
-            section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+            .map-wrapper { height: 300px !important; }
             .hero-grid { grid-template-columns: 1fr !important; gap: 2rem !important; text-align: center; }
             .hero-text-align { display: flex; flex-direction: column; align-items: center; }
             .hero-cta { flex-direction: column; width: 100%; gap: 1rem; }
             .hero-cta a { width: 100%; text-align: center; }
             .nav-links { display: none; }
             .logo-wrapper { padding: 0.1rem; }
+            .hero-img-wrapper { max-width: 260px !important; }
         }
     </style>
 </head>
@@ -233,7 +240,7 @@
         <div class="max-w-7xl mx-auto px-4 md:px-12 py-3 flex justify-between items-center">
             <div class="logo-wrapper">
                 <a href="#" class="flex items-center gap-2">
-                    <img src="assets/logo_premium.png" alt="Arly Logo" class="logo-image-nav">
+                    <img src="assets/logo_circle.png" alt="Arly Logo" class="logo-image-nav">
                     <div class="drip-title">
                         A<span class="drip-letter" style="color:#92465a">r</span><span class="drip-letter" style="color:#d47c91">l</span><span class="drip-letter" style="color:#92465a">y</span>&nbsp;<span class="drip-letter" style="color:#4a6545">H</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#f5a623">l</span><span class="drip-letter" style="color:#92465a">a</span><span class="drip-letter" style="color:#d47c91">d</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#4a6545">r</span><span class="drip-letter" style="color:#92465a">í</span><span class="drip-letter" style="color:#d47c91">a</span>
                         <div class="drip-drop"></div>
@@ -243,21 +250,33 @@
                     </div>
                 </a>
             </div>
-            
+
             <div class="hidden md:flex gap-10 font-bold text-[11px] uppercase tracking-[0.2em] text-on-background/80">
                 <a href="#inicio" class="hover:text-primary transition-colors">Inicio</a>
                 <a href="#carta" class="hover:text-primary transition-colors">La Carta</a>
                 <a href="#ubicacion" class="hover:text-primary transition-colors">Sede Cayma</a>
             </div>
-            
-            <div class="flex items-center gap-4">
+
+            <div class="flex items-center gap-3">
                 <a href="https://www.instagram.com/arly.heladeria?igsh=MWd4dW13MmRlOHU0ZQ%3D%3D" target="_blank" class="text-on-background/60 hover:text-primary transition-colors hidden sm:block">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="https://wa.me/51951969420" target="_blank" class="bg-primary hover:bg-primary-dark text-on-primary px-5 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-primary/10">
+                <a href="https://wa.me/51951969420" target="_blank" class="bg-primary hover:bg-primary-dark text-on-primary px-4 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-primary/10">
                     Pedidos
                 </a>
+                <!-- Hamburger -->
+                <button id="menu-toggle" class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]" aria-label="Abrir menú">
+                    <span class="block w-6 h-[2px] bg-[#1a1c1a] transition-all duration-300"></span>
+                    <span class="block w-6 h-[2px] bg-[#1a1c1a] transition-all duration-300"></span>
+                    <span class="block w-6 h-[2px] bg-[#1a1c1a] transition-all duration-300"></span>
+                </button>
             </div>
+        </div>
+        <!-- Mobile dropdown -->
+        <div id="mobile-menu" class="flex-col bg-[#faf9f6]/98 backdrop-blur-xl border-t border-primary/10 md:hidden">
+            <a href="#inicio" onclick="closeMobileMenu()" class="px-6 py-4 font-bold text-[11px] uppercase tracking-[0.2em] text-on-background/80 hover:text-primary hover:bg-primary/5 transition-colors border-b border-primary/10">Inicio</a>
+            <a href="#carta" onclick="closeMobileMenu()" class="px-6 py-4 font-bold text-[11px] uppercase tracking-[0.2em] text-on-background/80 hover:text-primary hover:bg-primary/5 transition-colors border-b border-primary/10">La Carta</a>
+            <a href="#ubicacion" onclick="closeMobileMenu()" class="px-6 py-4 font-bold text-[11px] uppercase tracking-[0.2em] text-on-background/80 hover:text-primary hover:bg-primary/5 transition-colors">Sede Cayma</a>
         </div>
     </nav>
 
@@ -278,7 +297,7 @@
                     </div>
                 </div>
                 <div class="relative flex justify-center lg:justify-end animate-float">
-                    <div class="relative w-full max-w-sm md:max-w-lg">
+                    <div class="relative w-full max-w-sm md:max-w-lg hero-img-wrapper">
                         <div class="absolute inset-0 bg-primary/10 rounded-full blur-[100px] scale-150"></div>
                         <img src="assets/chocoframbuesa.png" alt="Paleta Arly Chocoframbuesa" class="relative z-10 w-full object-contain filter drop-shadow-[0_30px_60px_rgba(146,70,90,0.4)]">
                     </div>
@@ -436,7 +455,7 @@
     <footer class="py-12 md:py-16 bg-[#1a1c1a] px-4 md:px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="flex flex-col items-center md:items-start gap-4">
-                <img src="assets/logo_premium.png" alt="Arly Logo" class="h-16 md:h-24 w-auto drop-shadow-lg">
+                <img src="assets/logo_circle.png" alt="Arly Logo" class="h-16 md:h-24 w-auto drop-shadow-lg">
                 <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">© 2024 Arly Heladería. Arequipa, Perú.</p>
             </div>
 
@@ -453,6 +472,12 @@
     </footer>
 
     <script>
+        // Mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+        function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+
         const revealElements = document.querySelectorAll('.reveal-on-scroll');
         const observerOptions = {
             threshold: 0.15,
