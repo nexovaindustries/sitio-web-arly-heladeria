@@ -1,261 +1,327 @@
 <!DOCTYPE html>
-
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-background": "#1a1c1a",
-                    "outline-variant": "#d8c1c4",
-                    "on-primary-container": "#57172b",
-                    "on-secondary-fixed": "#082007",
-                    "primary-fixed": "#ffd9df",
-                    "error": "#ba1a1a",
-                    "secondary": "#4a6545",
-                    "on-error": "#ffffff",
-                    "on-secondary-container": "#4f6a49",
-                    "background": "#faf9f6",
-                    "surface-tint": "#92465a",
-                    "outline": "#857275",
-                    "on-secondary-fixed-variant": "#334d2f",
-                    "on-surface-variant": "#534345",
-                    "surface-container": "#efeeeb",
-                    "on-primary-fixed": "#3d0318",
-                    "on-tertiary-container": "#422820",
-                    "surface-container-low": "#f4f3f1",
-                    "on-secondary": "#ffffff",
-                    "inverse-on-surface": "#f2f1ee",
-                    "on-tertiary-fixed": "#2c160e",
-                    "tertiary-fixed-dim": "#e7bdb1",
-                    "error-container": "#ffdad6",
-                    "on-tertiary-fixed-variant": "#5d4037",
-                    "surface": "#faf9f6",
-                    "tertiary": "#77574d",
-                    "secondary-fixed": "#ccebc2",
-                    "surface-container-high": "#e9e8e5",
-                    "surface-container-highest": "#e3e2e0",
-                    "secondary-fixed-dim": "#b1cfa7",
-                    "inverse-primary": "#ffb1c2",
-                    "inverse-surface": "#2f312f",
-                    "on-tertiary": "#ffffff",
-                    "surface-dim": "#dbdad7",
-                    "primary-container": "#d47c91",
-                    "on-primary": "#ffffff",
-                    "on-error-container": "#93000a",
-                    "primary-fixed-dim": "#ffb1c2",
-                    "primary": "#92465a",
-                    "surface-variant": "#e3e2e0",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-bright": "#faf9f6",
-                    "tertiary-container": "#b38e83",
-                    "on-primary-fixed-variant": "#752f43",
-                    "on-surface": "#1a1c1a",
-                    "tertiary-fixed": "#ffdbd0",
-                    "secondary-container": "#c9e8bf"
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Arly Heladería — Lo mejor de Arequipa en cada cucharada</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#92465a",
+                        "primary-container": "#d47c91",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f6",
+                        "surface": "#ffffff",
+                        "on-surface": "#1a1c1a",
+                        "on-surface-variant": "#534345",
+                        "secondary": "#4a6545",
+                        "secondary-container": "#c9e8bf"
+                    },
+                    fontFamily: {
+                        headline: ["Noto Serif"],
+                        body: ["Plus Jakarta Sans"]
+                    }
+                },
             },
-            "borderRadius": {
-                    "DEFAULT": "1rem",
-                    "lg": "2rem",
-                    "xl": "3rem",
-                    "full": "9999px"
-            },
-            "fontFamily": {
-                    "headline": ["Noto Serif"],
-                    "body": ["Plus Jakarta Sans"],
-                    "label": ["Plus Jakarta Sans"]
-            }
-          },
-        },
-      }
+        }
     </script>
-<style>.material-symbols-outlined {
-    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
-    }
-body {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    background-color: #faf9f6;
-    color: #1a1c1a
-    }
-h1, h2, h3, h4 {
-    font-family: "Noto Serif", serif
-    }
-.chocolate-drizzle-bg {
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBlkE0nFS53cv69AOu9FkE5udocbjYVGO0pPMP8a2D-ZJTfITXx5FncZfzuLhOQfpCaHCxw_VvpthOuvf6srCHKQv3pKWu6dm1xhHntbaxw_Oxnicba2y3amda4oGEFBkMeqOBMDnFC4TI5lI-B4jscmaBLBX_Yy6Jw5k66HqjY1okVHyZ5biexcwD2WM4aiwb7ZDu1EYFYxLewAc1U0ZZAgTHdO52EikQeCrfWNgR9iNElsIWsTdzVpVvfVTJidw-SEpoHlaE8CPw);
-    background-size: cover;
-    background-position: center;
-    opacity: 0.05;
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0
-    }</style>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        body { font-family: "Plus Jakarta Sans", sans-serif; background-color: #faf9f6; color: #1a1c1a; scroll-behavior: smooth; }
+        h1, h2, h3, h4 { font-family: "Noto Serif", serif }
+        .hero-gradient { background: linear-gradient(135deg, #faf9f6 0%, #ffd9df 100%); }
+        .catalog-card { transition: all 0.3s ease; border: 1px solid rgba(146, 70, 90, 0.05); }
+        .catalog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -15px rgba(146, 70, 90, 0.15); border-color: rgba(146, 70, 90, 0.1); }
+    </style>
 </head>
-<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-[#faf9f6]/80 dark:bg-stone-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
-<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-<a class="text-2xl font-bold font-['Noto_Serif'] text-[#92465a] dark:text-[#d47c91]" href="index.html">Arly Heladería</a>
-<div class="hidden md:flex items-center gap-8">
-<a class="font-['Noto_Serif'] text-lg font-medium text-[#92465a] dark:text-[#d47c91] border-b-2 border-[#92465a] pb-1" href="index.html">Inicio</a>
-<a class="font-['Noto_Serif'] text-lg font-medium text-stone-600 dark:text-stone-400 hover:text-[#92465a] transition-colors duration-300 ease-in-out" href="https://wa.me/c/51951969420" target="_blank">Sabores</a>
-<a class="font-['Noto_Serif'] text-lg font-medium text-stone-600 dark:text-stone-400 hover:text-[#92465a] transition-colors duration-300 ease-in-out" href="locales.html">Locales</a>
-<a class="font-['Noto_Serif'] text-lg font-medium text-stone-600 dark:text-stone-400 hover:text-[#92465a] transition-colors duration-300 ease-in-out" href="https://wa.me/51951969420" target="_blank">Contacto</a>
-</div>
-<a href="https://wa.me/51951969420" target="_blank" class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-full font-semibold transition-transform active:scale-95 shadow-lg shadow-primary/10 flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">shopping_cart</span>
-                Pedir Ahora
-</a>
-</div>
-</nav>
-<main class="pt-20">
-<!-- Hero Section -->
-<section class="relative min-h-[921px] flex items-center px-8 overflow-hidden font-body">
-<div class="chocolate-drizzle-bg"></div>
-<div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-<div class="z-10">
-<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-xs tracking-widest uppercase mb-6 uppercase">Arequipa, Perú</span>
-<h1 class="text-6xl md:text-8xl leading-tight mb-8 text-on-background font-headline font-bold">
-                        Artesanía en cada <span class="text-primary italic">cucharada</span>
-</h1>
-<p class="text-body-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed text-lg">
-                        Descubre el auténtico helado artesanal en el corazón de Arequipa. Desde nuestras famosas paletas hasta el hielo purificado para tus eventos.
+<body class="bg-background text-on-surface">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#faf9f6]/90 backdrop-blur-md shadow-sm border-b border-primary/5">
+        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+            <a class="text-2xl font-bold font-headline text-primary" href="#">Arly Heladería</a>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="font-bold text-sm uppercase tracking-widest text-on-surface hover:text-primary transition-colors" href="#inicio">Inicio</a>
+                <a class="font-bold text-sm uppercase tracking-widest text-on-surface hover:text-primary transition-colors" href="#carta">Nuestra Carta</a>
+                <a class="font-bold text-sm uppercase tracking-widest text-on-surface hover:text-primary transition-colors" href="#ubicacion">Ubicación</a>
+                <a class="font-bold text-sm uppercase tracking-widest text-on-surface hover:text-primary transition-colors" href="https://wa.me/51951969420" target="_blank">Contacto</a>
+            </div>
+            <a href="https://wa.me/51951969420" target="_blank" class="bg-primary text-on-primary px-8 py-3 rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 text-sm uppercase">
+                <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                Pedir Online
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="relative min-h-screen flex items-center px-8 pt-20 overflow-hidden hero-gradient">
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="z-10 order-2 lg:order-1">
+                    <span class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-bold text-xs tracking-widest uppercase mb-6">Arequipa • Artesanía Pura</span>
+                    <h1 class="text-6xl md:text-8xl leading-tight mb-8 font-bold">
+                        Tu momento <span class="text-primary italic">Arly</span> en Cayma
+                    </h1>
+                    <p class="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed">
+                        Redescubre el helado artesanal. Ingredientes frescos, procesos lentos y la famosa <span class="font-bold text-primary">Paleta de Chocoframbuesa</span> que conquista Arequipa.
                     </p>
-<div class="flex flex-wrap gap-4">
-<a href="https://wa.me/c/51951969420" target="_blank" class="px-8 py-4 rounded-full bg-primary text-on-primary font-bold shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
-                            Ver Catálogo
-                            <span class="material-symbols-outlined">menu_book</span>
-</a>
-<a href="locales.html" class="px-8 py-4 rounded-full bg-surface-container-highest text-on-surface font-bold transition-all hover:bg-surface-container-high active:scale-95">
-                            Nuestras Sedes
-</a>
-</div>
-</div>
-<div class="relative lg:h-[800px] flex items-center justify-center">
-<div class="absolute inset-0 bg-secondary-fixed/20 rounded-xl -rotate-3 scale-95 translate-x-12 translate-y-8"></div>
-<img alt="Paleta de Lúcuma Arly" class="w-full h-full object-cover rounded-xl shadow-2xl relative z-10 max-h-[700px]" src="assets/lucuma.png"/>
-</div>
-</div>
-</section>
-<!-- Categories Section -->
-<section class="py-24 bg-surface-container-low px-8 relative overflow-hidden">
-<div class="max-w-7xl mx-auto relative z-10">
-<div class="text-center mb-20">
-<h2 class="text-4xl md:text-5xl mb-6 font-headline font-bold">Mucho más que Helado</h2>
-<div class="w-24 h-1 bg-tertiary-container mx-auto rounded-full"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-<div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">icecream</span>
-<h3 class="text-xl font-bold mb-2">Paletas</h3>
-<p class="text-sm text-on-surface-variant">Más de 25 sabores artesanales y opciones Fit.</p>
-</div>
-<div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-<span class="material-symbols-outlined text-secondary text-4xl mb-4">bakery_dining</span>
-<h3 class="text-xl font-bold mb-2">Franúa</h3>
-<p class="text-sm text-on-surface-variant">Frambuesas bañadas en dos chocolates.</p>
-</div>
-<div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-<span class="material-symbols-outlined text-tertiary text-4xl mb-4">coffee</span>
-<h3 class="text-xl font-bold mb-2">Cups & Tea</h3>
-<p class="text-sm text-on-surface-variant">Helados en copa y refrescante Bubble Tea.</p>
-</div>
-<div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-<span class="material-symbols-outlined text-outline text-4xl mb-4">ac_unit</span>
-<h3 class="text-xl font-bold mb-2">Hielo</h3>
-<p class="text-sm text-on-surface-variant">Bolsas y vasos de hielo purificado.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Featured Flavors -->
-<section class="py-24 px-8 max-w-7xl mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-<div>
-<span class="font-label text-xs tracking-widest uppercase text-tertiary mb-2 block font-bold">Nuestra Selección</span>
-<h2 class="text-4xl md:text-5xl font-headline font-bold">Sabores del Volcán</h2>
-</div>
-<a class="text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all flex items-center gap-1" href="https://wa.me/c/51951969420" target="_blank">
-            Explorar Catálogo de Sabores
-            <span class="material-symbols-outlined text-sm">open_in_new</span>
-</a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-<!-- Flavor 1: Lucuma -->
-<div class="group cursor-pointer">
-<div class="aspect-[4/5] mb-8 overflow-hidden rounded-xl bg-surface-container">
-<img alt="Paleta de Lúcuma Real" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="assets/lucuma.png"/>
-</div>
-<span class="inline-block px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-[10px] uppercase tracking-wider mb-3 font-bold">Tradición Peruana</span>
-<h3 class="text-2xl mb-2 font-headline font-bold">Lúcuma Real</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">El sabor milenario de los Andes convertido en la paleta más cremosa de Arequipa.</p>
-</div>
-<!-- Flavor 2: Franua -->
-<div class="group cursor-pointer">
-<div class="aspect-[4/5] mb-8 overflow-hidden rounded-xl bg-surface-container">
-<img alt="Franúa Chocolate" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="assets/franua.png"/>
-</div>
-<span class="inline-block px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label text-[10px] uppercase tracking-wider mb-3 font-bold">Producto Estrella</span>
-<h3 class="text-2xl mb-2 font-headline font-bold">Franúa</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Frambuesas frescas con doble cobertura de chocolate blanco y biter.</p>
-</div>
-<!-- Flavor 3: Coco -->
-<div class="group cursor-pointer">
-<div class="aspect-[4/5] mb-8 overflow-hidden rounded-xl bg-surface-container">
-<img alt="Vainilla Bourbon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl0eqqEhzlT6PJQFNN4BUDf8IQfOAB0nHbWe-JhbT-X9zw_oQuh7mQOq2VqVmluXw8OmfMNUHDYaATuqho5duWdecUOfWDd0TH9-0-8Si7IB4utUax1fJ-qY-dt3fsT92neTFVigXD4tGbB2v3L-0GOvTkGPTrKdyMhT-E-ZsvtoiGcRuYsvMPBUb8nFSoMWMtAU6M_AY7dExQGxmxduFl0_zLDVsvgwJ8qRFLLJYrepvJ0IuIYS4LX8nYub5WjpDR-sUD9H4o-DE"/>
-</div>
-<span class="inline-block px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label text-[10px] uppercase tracking-wider mb-3 font-bold">Cremoso</span>
-<h3 class="text-2xl mb-2 font-headline font-bold">Coco Crujiente</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Leche de coco natural con trozos de fruta tostada para una textura única.</p>
-</div>
-<!-- Flavor 4: Acai -->
-<div class="group cursor-pointer">
-<div class="aspect-[4/5] mb-8 overflow-hidden rounded-xl bg-surface-container">
-<img alt="Fresas Silvestres" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIpaBTIkbjCZCboVrlpqRbj7sYPoJzOyZ4NXS--HrWSYXuNwuPmL72bNkCLF9PEgoiOkJYOaL2v5LV-pI0yjuDZnAeNFFIiwaZdh46KkuIti4eFuv6Ke5RHEWaQw6CGhofJ6DmQDDcBMxJ10SHkTmY3nFBipllUMk5v1tv_S90kBOn7iKZOKn9p37Z1N3ZfpFQw3dxHqkXNAPJ-f95qU_wDyaq4KMVGeNtu57Av7xVPTk8EfJSmXerzeDI-8ArGnbU93ITUFiJPhA"/>
-</div>
-<span class="inline-block px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label text-[10px] uppercase tracking-wider mb-3 font-bold">Línea Fit</span>
-<h3 class="text-2xl mb-2 font-headline font-bold">Acai Berry</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">El superalimento amazónico traído a una paleta refrescante y nutritiva.</p>
-</div>
-</div>
-</section>
-<!-- WhatsApp CTA -->
-<section class="mx-8 mb-24">
-<div class="max-w-7xl mx-auto bg-primary text-on-primary rounded-xl p-12 md:p-20 relative overflow-hidden">
-<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-<div class="relative z-10 max-w-2xl">
-<h2 class="text-4xl md:text-6xl mb-8 leading-tight font-headline font-bold">¿Antojo de Arly en casa?</h2>
-<p class="text-xl mb-10 opacity-90 font-body">Explora nuestro catálogo completo en WhatsApp y haz tu pedido. ¡Llegamos a todo Arequipa!</p>
-<div class="flex flex-col sm:flex-row gap-4">
-<a href="https://wa.me/c/51951969420" target="_blank" class="bg-white text-primary px-10 py-4 rounded-full font-bold hover:bg-surface-bright transition-colors flex items-center justify-center gap-2 text-lg">
-                    Ver Catálogo en WhatsApp
-                    <span class="material-symbols-outlined">whatsapp</span>
-</a>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="w-full rounded-t-[3rem] mt-16 bg-[#f4f3f1] dark:bg-stone-800 font-body">
-<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6 max-w-7xl mx-auto">
-<div class="flex flex-col items-center md:items-start">
-<a class="text-xl font-bold font-['Noto_Serif'] text-[#92465a] mb-2" href="#">Arly Heladería Arequipa</a>
-<p class="text-sm tracking-wide uppercase text-stone-500 dark:text-stone-400">© 2024 Arly Heladería. Creado con amor en Perú.</p>
-</div>
-<div class="flex gap-8">
-<a class="text-sm tracking-wide uppercase text-stone-500 dark:text-stone-400 hover:text-[#92465a] transition-all opacity-80 hover:opacity-100" href="https://www.instagram.com/arlyheladeria/" target="_blank">Instagram</a>
-<a class="text-sm tracking-wide uppercase text-stone-500 dark:text-stone-400 hover:text-[#92465a] transition-all opacity-80 hover:opacity-100" href="https://wa.me/51951969420" target="_blank">WhatsApp</a>
-<a class="text-sm tracking-wide uppercase text-stone-500 dark:text-stone-400 hover:text-[#92465a] transition-all opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
-</div>
-</div>
-</footer>
-</body></html>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#carta" class="px-10 py-5 rounded-full bg-primary text-on-primary font-bold shadow-2xl transition-all hover:scale-105 active:scale-95">
+                            Ver la Carta
+                        </a>
+                        <a href="#ubicacion" class="px-10 py-5 rounded-full bg-white text-on-surface font-bold border border-primary/10 transition-all hover:bg-primary/5">
+                            Visítanos
+                        </a>
+                    </div>
+                </div>
+                <div class="relative order-1 lg:order-2 flex justify-center">
+                    <div class="relative w-full max-w-lg">
+                        <div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl scale-125"></div>
+                        <img alt="Paleta de Chocoframbuesa Arly" class="relative z-10 w-full object-contain drop-shadow-2xl animate-[float_4s_ease-in-out_infinite]" src="assets/chocoframbuesa.png"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalog Section -->
+        <section id="carta" class="py-32 px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-24">
+                <span class="font-bold text-xs tracking-widest uppercase text-primary mb-4 block">Catálogo Completo</span>
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">Nuestra Exquisita Carta</h2>
+                <p class="text-on-surface-variant max-w-2xl mx-auto text-lg leading-relaxed">Todo lo que buscas para refrescar tu día, organizado para ti.</p>
+            </div>
+
+            <!-- Paletas Category -->
+            <div class="mb-32">
+                <div class="flex items-center gap-4 mb-16">
+                    <h3 class="text-3xl font-bold text-primary">Nuestras Paletas</h3>
+                    <div class="h-px flex-grow bg-primary/10"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <!-- Featured: Chocoframbuesa -->
+                    <div class="catalog-card bg-white p-4 rounded-[2rem]">
+                        <div class="aspect-square rounded-2xl overflow-hidden mb-6 bg-primary/5">
+                            <img src="assets/chocoframbuesa.png" class="w-full h-full object-cover" alt="Chocoframbuesa">
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-[#d47c91] mb-2 block">⭐ La Favorita</span>
+                        <h4 class="text-2xl font-bold mb-2">Chocoframbuesa</h4>
+                        <p class="text-on-surface-variant text-sm mb-4">Paleta de frambuesa natural bañada en chocolate premium.</p>
+                        <span class="font-bold text-primary">S/ 8.50</span>
+                    </div>
+                    <!-- Lucuma -->
+                    <div class="catalog-card bg-white p-4 rounded-[2rem]">
+                        <div class="aspect-square rounded-2xl overflow-hidden mb-6 bg-primary/5">
+                            <img src="assets/lucuma.png" class="w-full h-full object-cover" alt="Lúcuma">
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-2 block">Tradición</span>
+                        <h4 class="text-2xl font-bold mb-2">Lúcuma Real</h4>
+                        <p class="text-on-surface-variant text-sm mb-4">La fruta bandera hecha paleta ultra cremosa.</p>
+                        <span class="font-bold text-primary">S/ 7.50</span>
+                    </div>
+                    <!-- Coco -->
+                    <div class="catalog-card bg-white p-4 rounded-[2rem]">
+                        <div class="aspect-square rounded-2xl overflow-hidden mb-6 bg-secondary-container/20">
+                            <img src="assets/strawberry.png" class="w-full h-full object-cover opacity-60" alt="Coco">
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2 block">Crema</span>
+                        <h4 class="text-2xl font-bold mb-2">Coco Rallado</h4>
+                        <p class="text-on-surface-variant text-sm mb-4">Base cremosa de coco con trozos de fruta natural.</p>
+                        <span class="font-bold text-primary">S/ 7.50</span>
+                    </div>
+                    <!-- Acai -->
+                    <div class="catalog-card bg-white p-4 rounded-[2rem]">
+                        <div class="aspect-square rounded-2xl overflow-hidden mb-6 bg-primary/5">
+                            <img src="assets/hero.png" class="w-full h-full object-cover opacity-60" alt="Acai">
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Fit</span>
+                        <h4 class="text-2xl font-bold mb-2">Acai Berry</h4>
+                        <p class="text-on-surface-variant text-sm mb-4">Superfood amazónico para un antojo saludable.</p>
+                        <span class="font-bold text-primary">S/ 9.00</span>
+                    </div>
+                </div>
+                <div class="mt-12 p-8 bg-surface border border-primary/5 rounded-3xl">
+                    <h5 class="font-bold text-primary mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined">checklist</span> Otros Sabores de Paletas:
+                    </h5>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm font-medium text-on-surface-variant">
+                        <div class="flex items-center gap-2">• Oreo</div>
+                        <div class="flex items-center gap-2">• Maracuyá Rellena</div>
+                        <div class="flex items-center gap-2">• Vainilla</div>
+                        <div class="flex items-center gap-2">• Chocolate Suizo</div>
+                        <div class="flex items-center gap-2">• Fresa Fruta</div>
+                        <div class="flex items-center gap-2">• Chocomaní</div>
+                        <div class="flex items-center gap-2">• Menta Chips</div>
+                        <div class="flex items-center gap-2">• Pay de Limón</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cups Category -->
+            <div class="mb-32">
+                <div class="flex items-center gap-4 mb-16">
+                    <h3 class="text-3xl font-bold text-primary">Helado en Copa (Cups)</h3>
+                    <div class="h-px flex-grow bg-primary/10"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="catalog-card bg-white p-8 rounded-[2rem] border-l-4 border-primary">
+                        <h4 class="text-2xl font-bold mb-2">Franúa Cup</h4>
+                        <p class="text-on-surface-variant text-sm mb-6">Cubos de frambuesa bañados en chocolate blanco y negro.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">S/ 18.00</span>
+                            <span class="text-xs bg-primary/5 px-3 py-1 rounded-full">Personal</span>
+                        </div>
+                    </div>
+                    <div class="catalog-card bg-white p-8 rounded-[2rem]">
+                        <h4 class="text-2xl font-bold mb-2">Queso Helado Cup</h4>
+                        <p class="text-on-surface-variant text-sm mb-6">La tradición arequipeña en una copa cremosa con canela.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">S/ 12.00</span>
+                            <span class="text-xs bg-primary/5 px-3 py-1 rounded-full">Especial</span>
+                        </div>
+                    </div>
+                    <div class="catalog-card bg-white p-8 rounded-[2rem]">
+                        <h4 class="text-2xl font-bold mb-2">Vasitos de Sabores</h4>
+                        <p class="text-on-surface-variant text-sm mb-6">Elige tus sabores favoritos de crema o fruta en vasito.</p>
+                        <div class="space-y-2 text-xs font-bold text-primary/60">
+                            <div class="flex justify-between"><span>1 Bola</span> <span>S/ 6.00</span></div>
+                            <div class="flex justify-between"><span>2 Bolas</span> <span>S/ 10.00</span></div>
+                            <div class="flex justify-between"><span>3 Bolas</span> <span>S/ 14.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ice Category -->
+            <div class="mb-10">
+                <div class="flex items-center gap-4 mb-16">
+                    <h3 class="text-3xl font-bold text-primary">Línea de Hielo</h3>
+                    <div class="h-px flex-grow bg-primary/10"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="catalog-card bg-blue-50/30 p-8 rounded-[2rem] flex items-center gap-8 border border-blue-100/50">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-4xl text-blue-500">ac_unit</span>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold mb-1">Bolsa de Hielo</h4>
+                            <p class="text-on-surface-variant text-sm mb-4">Hielo purificado en estado sólido ideal para eventos.</p>
+                            <div class="flex gap-4">
+                                <span class="text-sm font-bold">3kg: S/ 5.00</span>
+                                <span class="text-sm font-bold">5kg: S/ 8.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="catalog-card bg-blue-50/30 p-8 rounded-[2rem] flex items-center gap-8 border border-blue-100/50">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-4xl text-blue-500">local_bar</span>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold mb-1">Vaso de Hielo</h4>
+                            <p class="text-on-surface-variant text-sm mb-4">Para acompañar tu bebida favorita al instante.</p>
+                            <span class="font-bold">S/ 1.50 c/u</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="ubicacion" class="py-32 bg-surface text-center">
+            <div class="max-w-7xl mx-auto px-8">
+                <span class="font-bold text-xs tracking-widest uppercase text-primary mb-4 block">Visítanos</span>
+                <h2 class="text-5xl font-bold mb-16">Nuestra Sede en Cayma</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-16 items-stretch">
+                    <div class="bg-background p-10 rounded-[3rem] text-left border border-primary/5 flex flex-col justify-center">
+                        <h3 class="text-4xl font-bold mb-8 italic text-primary">Arly Heladería</h3>
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-xl mb-1">Dirección Exacta</p>
+                                    <p class="text-on-surface-variant">Av. Trinidad Morán A-13, León XIII<br/>Cayma, Arequipa, Perú.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined">schedule</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-xl mb-1">Horario de Atención</p>
+                                    <p class="text-on-surface-variant">Lunes a Domingo: 11:00 AM - 9:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://maps.app.goo.gl/9ZpXZ96XqK3UjGkH8" target="_blank" class="mt-12 bg-primary text-on-primary px-10 py-5 rounded-full font-bold shadow-xl shadow-primary/20 hover:scale-105 transition-all inline-flex items-center gap-3 self-start">
+                            Cómo llegar
+                            <span class="material-symbols-outlined">directions</span>
+                        </a>
+                    </div>
+                    <!-- Fixed Google Maps Embed -->
+                    <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white min-h-[500px]">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.487042079035!2d-71.55863332483844!3d-16.39254218447035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424a6639736e9d%3A0xc39281a1795166f2!2sArly%20heladeria!5e0!3m2!1sen!2spe!4v1712694300000!5m2!1sen!2spe" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-8 mb-24 max-w-7xl mx-auto">
+            <div class="bg-primary p-20 rounded-[3rem] text-on-primary text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl"></div>
+                <div class="relative z-10">
+                    <h2 class="text-5xl font-bold mb-8">¿Listo para refrescar tu día?</h2>
+                    <p class="text-xl mb-12 opacity-90 max-w-xl mx-auto">Pide tus sabores favoritos por WhatsApp y recíbelos en la puerta de tu casa.</p>
+                    <a href="https://wa.me/51951969420" target="_blank" class="bg-white text-primary px-12 py-6 rounded-full font-bold text-xl hover:bg-white/90 transition-all inline-flex items-center gap-4">
+                        Haz tu Pedido Aquí
+                        <span class="material-symbols-outlined font-black">whatsapp</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-16 px-8 border-t border-primary/5 text-center font-body">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col items-center gap-8">
+                <a class="text-3xl font-bold font-headline text-primary" href="#">Arly Heladería</a>
+                <div class="flex gap-12 font-bold text-xs uppercase tracking-widest text-on-surface-variant/80">
+                    <a href="https://www.instagram.com/arlyheladeria/" target="_blank" class="hover:text-primary transition-colors">Instagram</a>
+                    <a href="https://wa.me/51951969420" target="_blank" class="hover:text-primary transition-colors">WhatsApp</a>
+                    <a href="#" class="hover:text-primary transition-colors">Aviso de Privacidad</a>
+                </div>
+                <div class="w-full h-px bg-primary/5 my-8"></div>
+                <p class="text-sm text-on-surface-variant font-medium">© 2024 Arly Heladería. Creado con amor por Nexova en Arequipa, Perú.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</body>
+</html>
