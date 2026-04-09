@@ -170,17 +170,19 @@
         .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); }
         .whatsapp-drip {
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             width: 12px;
-            height: 12px;
-            background: #25d366;
-            border-radius: 50%;
-            opacity: 0.8;
+            height: 18px;
+            background: #1fac55;
+            border-radius: 40% 40% 55% 55%;
+            opacity: 0.95;
             pointer-events: none;
+            transform-origin: top center;
         }
-        .drip-1 { left: 20%; animation: drip 2.5s infinite; }
-        .drip-2 { left: 50%; animation: drip 3.2s infinite 0.5s; }
-        .drip-3 { left: 80%; animation: drip 2.8s infinite 1.2s; }
+        .drip-1 { left: 15%; animation: drip 2s infinite 0s; }
+        .drip-2 { left: 40%; animation: drip 2.6s infinite 0.7s; width: 14px; height: 20px; border-radius: 40% 40% 50% 50%; }
+        .drip-3 { left: 65%; animation: drip 2.2s infinite 1.4s; }
+        .drip-4 { left: 85%; animation: drip 3s infinite 0.3s; width: 9px; height: 12px; }
 
         /* Scroll Reveal Utility */
         .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -211,6 +213,7 @@
         <div class="whatsapp-drip drip-1"></div>
         <div class="whatsapp-drip drip-2"></div>
         <div class="whatsapp-drip drip-3"></div>
+        <div class="whatsapp-drip drip-4"></div>
     </a>
 
     <!-- Header / Nav -->
@@ -416,24 +419,39 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-20 bg-white px-6 border-t border-primary/10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <div class="text-center md:text-left">
-                <div class="logo-wrapper mb-4">
-                    <img src="assets/logo_premium.png" alt="Arly Heladeria Logo" class="h-12 w-auto">
-                </div>
-                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/70">© 2024 Arly Heladería. Arequipa, Perú.</p>
-            </div>
-            
-            <div class="flex gap-10 font-bold text-[10px] uppercase tracking-[0.3em] text-on-surface/80">
-                <a href="https://www.instagram.com/arly.heladeria?igsh=MWd4dW13MmRlOHU0ZQ%3D%3D" target="_blank" class="hover:text-primary transition-colors">Instagram</a>
-                <a href="https://wa.me/51951969420" target="_blank" class="hover:text-primary transition-colors">WhatsApp</a>
-                <a href="#" class="hover:text-primary transition-colors">Privacidad</a>
-            </div>
-            
-            <a href="#inicio" class="w-14 h-14 rounded-full border-2 border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all shadow-sm">
-                <span class="material-symbols-outlined">arrow_upward</span>
+    <footer class="py-16 bg-[#1a1c1a] px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+
+            <!-- PALETA HORIZONTAL SVG LOGO -->
+            <a href="#" class="block group">
+                <svg viewBox="0 0 320 90" width="280" height="80" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 4px 12px rgba(212,179,71,0.3));">
+                    <!-- Paleta body (rounded rectangle, horizontal) -->
+                    <rect x="10" y="10" width="270" height="70" rx="35" ry="35" fill="#c9a227" />
+                    <!-- Chocolate drip on top-left -->
+                    <path d="M55 10 Q45 0 55 5 Q65 0 58 10Z" fill="#b8911f" opacity="0.6"/>
+                    <path d="M120 10 Q108 -3 118 4 Q130 -2 122 10Z" fill="#b8911f" opacity="0.5"/>
+                    <path d="M200 10 Q190 -2 200 5 Q210 -2 203 10Z" fill="#b8911f" opacity="0.5"/>
+                    <!-- Shine highlight -->
+                    <ellipse cx="80" cy="35" rx="30" ry="10" fill="white" opacity="0.12"/>
+                    <!-- Stick -->
+                    <rect x="278" y="35" width="30" height="20" rx="8" fill="#d4a862"/>
+                    <!-- Text inside paleta -->
+                    <text x="145" y="56" font-family="Georgia, 'Noto Serif', serif" font-size="24" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-0.5">Arly Helader&#237;a</text>
+                </svg>
             </a>
+
+            <div class="flex gap-10 font-bold text-[10px] uppercase tracking-[0.3em] text-white/60">
+                <a href="https://www.instagram.com/arly.heladeria?igsh=MWd4dW13MmRlOHU0ZQ%3D%3D" target="_blank" class="hover:text-[#c9a227] transition-colors">Instagram</a>
+                <a href="https://wa.me/51951969420" target="_blank" class="hover:text-[#c9a227] transition-colors">WhatsApp</a>
+                <a href="#" class="hover:text-[#c9a227] transition-colors">Privacidad</a>
+            </div>
+
+            <div class="flex flex-col items-end gap-4">
+                <a href="#inicio" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-[#c9a227] hover:text-white hover:border-transparent transition-all">
+                    <span class="material-symbols-outlined text-sm">arrow_upward</span>
+                </a>
+                <p class="text-[9px] font-bold uppercase tracking-widest text-white/30">© 2024 Arly Heladería. Arequipa, Perú.</p>
+            </div>
         </div>
     </footer>
 
