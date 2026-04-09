@@ -84,11 +84,11 @@
             position: relative;
             font-family: 'Noto Serif', serif;
             font-weight: 800;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #92465a;
             letter-spacing: -0.02em;
             display: inline-block;
-            text-shadow: 2px 2px 0px rgba(212, 124, 145, 0.3);
+            text-shadow: 2px 2px 0px rgba(212, 124, 145, 0.2);
         }
         .drip-title span.drip-letter {
             display: inline-block;
@@ -101,20 +101,19 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-4px); }
         }
-        /* Drip drops hanging from the title */
         .drip-drop {
             position: absolute;
-            bottom: -22px;
-            width: 10px;
-            height: 14px;
+            bottom: -18px;
+            width: 8px;
+            height: 12px;
             border-radius: 0 0 50% 50%;
             animation: drop-fall 2.5s ease-in-out infinite;
             pointer-events: none;
         }
         .drip-drop:nth-child(1) { background: #d47c91; left: 15%; animation-delay: 0s; }
-        .drip-drop:nth-child(2) { background: #f5a623; left: 35%; width: 8px; height: 10px; animation-delay: 0.8s; }
+        .drip-drop:nth-child(2) { background: #f5a623; left: 35%; width: 6px; height: 8px; animation-delay: 0.8s; }
         .drip-drop:nth-child(3) { background: #92465a; left: 60%; animation-delay: 1.6s; }
-        .drip-drop:nth-child(4) { background: #4a6545; left: 80%; width: 7px; height: 9px; animation-delay: 2.1s; }
+        .drip-drop:nth-child(4) { background: #4a6545; left: 80%; width: 5px; height: 7px; animation-delay: 2.1s; }
         @keyframes drop-fall {
             0%   { transform: scaleY(0.5) translateY(0); opacity: 1; }
             60%  { transform: scaleY(1.4) translateY(6px); opacity: 0.9; }
@@ -122,13 +121,13 @@
         }
 
         /* Logo wrapper */
-        .logo-wrapper { position: relative; display: inline-flex; align-items: center; padding: 0.5rem 1rem; overflow: visible; }
-        .logo-image { height: 60px; width: auto; transition: transform 0.3s ease; }
-        .logo-wrapper:hover .logo-image { transform: scale(1.05) rotate(-2deg); }
+        .logo-wrapper { position: relative; display: inline-flex; align-items: center; padding: 0.25rem; overflow: visible; }
+        .logo-image-nav { height: 45px; width: auto; transition: transform 0.3s ease; }
+        .logo-wrapper:hover .logo-image-nav { transform: scale(1.05) rotate(-2deg); }
 
         /* === GLASSMORPHISM LOCATION CARD === */
         .glass-card {
-            background: rgba(250, 249, 246, 0.85);
+            background: rgba(250, 249, 246, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1.5px solid rgba(146, 70, 90, 0.15);
@@ -139,7 +138,7 @@
 
         /* Catalog Styling */
         .catalog-section {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             border-radius: 3rem;
             box-shadow: 0 30px 60px -10px rgba(146, 70, 90, 0.15);
@@ -200,8 +199,21 @@
         }
 
         @media (max-width: 768px) { 
-            .whatsapp-float { width: 60px; height: 60px; bottom: 20px; right: 20px; }
-            .logo-image { height: 45px; }
+            .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; }
+            .logo-image-nav { height: 35px; margin-right: 5px; }
+            .drip-title { font-size: 1.1rem; }
+            .drip-drop { display: none; }
+            h1 { font-size: 3.2rem !important; line-height: 1.1 !important; }
+            .glass-card { padding: 1.5rem; border-radius: 1.5rem; }
+            .catalog-section { padding: 1.5rem !important; border-radius: 2rem; }
+            .map-wrapper { height: 350px !important; }
+            section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+            .hero-grid { grid-template-columns: 1fr !important; gap: 2rem !important; text-align: center; }
+            .hero-text-align { display: flex; flex-direction: column; align-items: center; }
+            .hero-cta { flex-direction: column; width: 100%; gap: 1rem; }
+            .hero-cta a { width: 100%; text-align: center; }
+            .nav-links { display: none; }
+            .logo-wrapper { padding: 0.1rem; }
         }
     </style>
 </head>
@@ -217,29 +229,32 @@
     </a>
 
     <!-- Header / Nav -->
-    <nav class="fixed top-0 w-full z-50 bg-[#faf9f6]/85 premium-blur">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
+    <nav class="fixed top-0 w-full z-50 bg-[#faf9f6]/92 premium-blur">
+        <div class="max-w-7xl mx-auto px-4 md:px-12 py-3 flex justify-between items-center">
             <div class="logo-wrapper">
-                <a href="#" class="drip-title">
-                    A<span class="drip-letter" style="color:#92465a">r</span><span class="drip-letter" style="color:#d47c91">l</span><span class="drip-letter" style="color:#92465a">y</span>&nbsp;<span class="drip-letter" style="color:#4a6545">H</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#f5a623">l</span><span class="drip-letter" style="color:#92465a">a</span><span class="drip-letter" style="color:#d47c91">d</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#4a6545">r</span><span class="drip-letter" style="color:#92465a">í</span><span class="drip-letter" style="color:#d47c91">a</span>
-                    <div class="drip-drop"></div>
-                    <div class="drip-drop"></div>
-                    <div class="drip-drop"></div>
-                    <div class="drip-drop"></div>
+                <a href="#" class="flex items-center gap-2">
+                    <img src="assets/logo_premium.png" alt="Arly Logo" class="logo-image-nav">
+                    <div class="drip-title">
+                        A<span class="drip-letter" style="color:#92465a">r</span><span class="drip-letter" style="color:#d47c91">l</span><span class="drip-letter" style="color:#92465a">y</span>&nbsp;<span class="drip-letter" style="color:#4a6545">H</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#f5a623">l</span><span class="drip-letter" style="color:#92465a">a</span><span class="drip-letter" style="color:#d47c91">d</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#4a6545">r</span><span class="drip-letter" style="color:#92465a">í</span><span class="drip-letter" style="color:#d47c91">a</span>
+                        <div class="drip-drop"></div>
+                        <div class="drip-drop"></div>
+                        <div class="drip-drop"></div>
+                        <div class="drip-drop"></div>
+                    </div>
                 </a>
             </div>
             
-            <div class="hidden md:flex gap-12 font-bold text-[11px] uppercase tracking-[0.2em] text-on-background/70">
+            <div class="hidden md:flex gap-10 font-bold text-[11px] uppercase tracking-[0.2em] text-on-background/80">
                 <a href="#inicio" class="hover:text-primary transition-colors">Inicio</a>
                 <a href="#carta" class="hover:text-primary transition-colors">La Carta</a>
                 <a href="#ubicacion" class="hover:text-primary transition-colors">Sede Cayma</a>
             </div>
             
-            <div class="flex items-center gap-6">
-                <a href="https://www.instagram.com/arly.heladeria?igsh=MWd4dW13MmRlOHU0ZQ%3D%3D" target="_blank" class="text-on-background/60 hover:text-primary transition-colors">
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/arly.heladeria?igsh=MWd4dW13MmRlOHU0ZQ%3D%3D" target="_blank" class="text-on-background/60 hover:text-primary transition-colors hidden sm:block">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="https://wa.me/51951969420" target="_blank" class="bg-primary hover:bg-primary-dark text-on-primary px-7 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-primary/10">
+                <a href="https://wa.me/51951969420" target="_blank" class="bg-primary hover:bg-primary-dark text-on-primary px-5 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-primary/10">
                     Pedidos
                 </a>
             </div>
@@ -248,24 +263,24 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="inicio" class="min-h-screen flex items-center justify-center px-6 pt-24 overflow-hidden relative">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="animate-fade-in-up">
-                    <div class="flex items-center gap-3 mb-8">
+        <section id="inicio" class="min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden relative">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center hero-grid">
+                <div class="animate-fade-in-up hero-text-align">
+                    <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-[2px] bg-primary"></div>
-                        <span class="text-[11px] font-bold uppercase tracking-[0.4em] text-primary">Arequipa, Perú</span>
+                        <span class="text-[11px] font-extrabold uppercase tracking-[0.4em] text-primary">Arequipa, Perú</span>
                     </div>
-                    <h1 class="text-6xl md:text-8xl font-bold leading-[1.05] mb-10 text-on-background reveal-on-scroll">Artesanía en <br/><span class="text-primary italic">cada paleta.</span></h1>
-                    <p class="text-xl text-on-surface-variant max-w-lg mb-12 font-medium leading-relaxed reveal-on-scroll">Combinamos insumos frescos y procesos lentos para crear una experiencia helada sin igual en el corazón de Cayma.</p>
-                    <div class="flex gap-6 reveal-on-scroll">
-                        <a href="#carta" class="bg-primary text-on-primary px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">Explorar Menú</a>
-                        <a href="#ubicacion" class="border-2 border-primary/20 bg-white/50 backdrop-blur-sm px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Ver Sede</a>
+                    <h1 class="text-5xl md:text-8xl font-black leading-[1.05] mb-8 text-primary-dark reveal-on-scroll" style="text-shadow: 0 4px 15px rgba(255,255,255,0.9);">Artesanía en <br/><span class="text-primary italic">cada paleta.</span></h1>
+                    <p class="text-lg md:text-xl text-on-background max-w-lg mb-10 font-bold leading-relaxed reveal-on-scroll">Combinamos insumos frescos y procesos lentos para crear una experiencia helada sin igual en el corazón de Cayma.</p>
+                    <div class="flex gap-4 reveal-on-scroll hero-cta">
+                        <a href="#carta" class="bg-primary text-on-primary px-8 md:px-12 py-4 md:py-5 rounded-full font-extrabold text-[10px] md:text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">Explorar Menú</a>
+                        <a href="#ubicacion" class="border-2 border-primary/20 bg-white/60 backdrop-blur-sm px-8 md:px-12 py-4 md:py-5 rounded-full font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Ver Sede</a>
                     </div>
                 </div>
                 <div class="relative flex justify-center lg:justify-end animate-float">
-                    <div class="relative w-full max-w-lg">
-                        <div class="absolute inset-0 bg-primary/10 rounded-full blur-[120px] scale-150"></div>
-                        <img src="assets/chocoframbuesa.png" alt="Paleta Arly Chocoframbuesa" class="relative z-10 w-full object-contain filter drop-shadow-[0_30px_60px_rgba(146,70,90,0.3)]">
+                    <div class="relative w-full max-w-sm md:max-w-lg">
+                        <div class="absolute inset-0 bg-primary/10 rounded-full blur-[100px] scale-150"></div>
+                        <img src="assets/chocoframbuesa.png" alt="Paleta Arly Chocoframbuesa" class="relative z-10 w-full object-contain filter drop-shadow-[0_30px_60px_rgba(146,70,90,0.4)]">
                     </div>
                 </div>
             </div>
@@ -274,18 +289,18 @@
         <div class="melting-divider"></div>
 
         <!-- Catalog Section -->
-        <section id="carta" class="py-32 px-6">
-            <div class="max-w-5xl mx-auto catalog-section p-12 md:p-20 reveal-on-scroll">
-                <div class="text-center mb-24">
-                    <h2 class="text-5xl md:text-6xl font-bold mb-6 text-primary">Nuestra Carta</h2>
-                    <p class="text-on-surface-variant font-bold tracking-widest uppercase text-xs">Tentaciones Heladas Artesanales</p>
+        <section id="carta" class="py-20 md:py-32 px-4 md:px-6">
+            <div class="max-w-5xl mx-auto catalog-section p-8 md:p-20 reveal-on-scroll">
+                <div class="text-center mb-16 md:mb-24">
+                    <h2 class="text-4xl md:text-6xl font-black mb-4 text-primary">Nuestra Carta</h2>
+                    <p class="text-on-surface-variant font-black tracking-widest uppercase text-[10px] md:text-xs">Tentaciones Heladas Artesanales</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-20">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 md:gap-x-24 gap-y-12 md:gap-y-20">
                     <!-- Cremas -->
                     <div class="reveal-on-scroll">
                         <h3 class="catalog-category-title">Paletas de Crema</h3>
-                        <div class="catalog-container font-semibold text-on-surface">
+                        <div class="catalog-container font-bold text-on-surface">
                             <div class="catalog-item">Lúcuma</div>
                             <div class="catalog-item">Oreo</div>
                             <div class="catalog-item">Fresa con Crema</div>
@@ -304,7 +319,7 @@
                     <!-- Frutas -->
                     <div class="reveal-on-scroll">
                         <h3 class="catalog-category-title">Paletas de Frutas</h3>
-                        <div class="catalog-container font-semibold text-on-surface">
+                        <div class="catalog-container font-bold text-on-surface">
                             <div class="catalog-item">Maracuyá</div>
                             <div class="catalog-item">Sandía</div>
                             <div class="catalog-item">Piña</div>
@@ -320,7 +335,7 @@
                     <!-- Licor -->
                     <div class="reveal-on-scroll">
                         <h3 class="catalog-category-title">Paletas de Licor</h3>
-                        <div class="catalog-container font-semibold text-on-surface">
+                        <div class="catalog-container font-bold text-on-surface">
                             <div class="catalog-item">Mojito</div>
                             <div class="catalog-item">Pisco Sour</div>
                         </div>
@@ -329,7 +344,7 @@
                     <!-- Cups -->
                     <div class="reveal-on-scroll">
                         <h3 class="catalog-category-title">Cups</h3>
-                        <div class="catalog-container font-semibold text-on-surface">
+                        <div class="catalog-container font-bold text-on-surface">
                             <div class="catalog-item">Cup de Queso Helado</div>
                             <div class="catalog-item">Cup de Pie de Limón</div>
                             <div class="catalog-item">Cup de Cheesecake de Frutos Rojos</div>
@@ -343,7 +358,7 @@
                     <div class="md:col-span-2 flex justify-center reveal-on-scroll">
                         <div class="max-w-md w-full">
                             <h3 class="catalog-category-title text-center border-l-0">Hielo</h3>
-                            <div class="catalog-container font-bold text-on-surface text-center">
+                            <div class="catalog-container font-black text-on-surface text-center">
                                 <div class="catalog-item border-none text-primary">Vaso de Hielo</div>
                                 <div class="catalog-item border-none text-primary transform scale-110">Bolsa de Hielo de 2.300kg</div>
                             </div>
@@ -354,48 +369,47 @@
         </section>
 
         <!-- Location Section -->
-        <section id="ubicacion" class="py-32 px-6">
+        <section id="ubicacion" class="py-20 md:py-32 px-4 md:px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
                     <div class="reveal-on-scroll">
-                        <!-- GLASS CARD behind text for readability -->
                         <div class="glass-card">
-                            <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-6 block">Sede Principal</span>
-                            <h2 class="text-5xl font-bold mb-10 leading-tight text-on-background">Ubicación & <br/><span class="text-primary italic">Horarios.</span></h2>
+                            <span class="text-[11px] font-black uppercase tracking-[0.3em] text-primary mb-6 block">Sede Principal</span>
+                            <h2 class="text-4xl md:text-5xl font-black mb-10 leading-tight text-on-background">Ubicación & <br/><span class="text-primary italic">Horarios.</span></h2>
                             
                             <div class="space-y-8 mb-12">
                                 <div class="flex gap-6 items-center">
-                                    <div class="w-14 h-14 bg-primary/15 rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                    <div class="w-12 md:w-14 h-12 md:h-14 bg-primary/15 rounded-full flex items-center justify-center shrink-0 shadow-sm">
                                         <span class="material-symbols-outlined text-primary text-xl">location_on</span>
                                     </div>
                                     <div>
-                                        <p class="font-bold text-xl mb-1 text-on-background">Av. Trinidad Morán A-13</p>
-                                        <p class="text-on-surface-variant font-medium">León XIII, Cayma • Arequipa, Perú.</p>
+                                        <p class="font-black text-lg md:text-xl mb-1 text-on-background">Av. Trinidad Morán A-13</p>
+                                        <p class="text-on-surface-variant font-bold text-sm md:text-base">León XIII, Cayma • Arequipa, Perú.</p>
                                     </div>
                                 </div>
                                 
                                 <div class="flex gap-6 items-center">
-                                    <div class="w-14 h-14 bg-primary/15 rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                    <div class="w-12 md:w-14 h-12 md:h-14 bg-primary/15 rounded-full flex items-center justify-center shrink-0 shadow-sm">
                                         <span class="material-symbols-outlined text-primary text-xl">schedule</span>
                                     </div>
                                     <div>
-                                        <p class="font-bold text-xl mb-2 text-on-background">Horarios de Atención</p>
-                                        <div class="font-medium space-y-1">
-                                            <p class="text-on-background"><span class="font-bold text-primary">Lu - Sá:</span> 9:00 AM — 6:00 PM</p>
-                                            <p class="text-on-background"><span class="font-bold text-primary">Domingo:</span> 10:00 AM — 5:00 PM</p>
+                                        <p class="font-black text-lg md:text-xl mb-2 text-on-background">Horarios de Atención</p>
+                                        <div class="font-bold text-sm md:text-base space-y-1">
+                                            <p class="text-on-background"><span class="font-black text-primary">Lu - Sá:</span> 9:00 AM — 6:00 PM</p>
+                                            <p class="text-on-background"><span class="font-black text-primary">Domingo:</span> 10:00 AM — 5:00 PM</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <a href="https://www.google.com/maps/dir//Arly+heladeria,+Av.+Trinidad+Mor%C3%A1n+a+13,+Cayma+04006/@-16.3925422,-71.5586333,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x91424b952a67587b:0xc04f1ed34bf8a51f!2m2!1d-71.5491061!2d-16.3925422?entry=ttu" target="_blank" class="inline-flex items-center gap-4 bg-primary text-on-primary px-10 py-5 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-110 active:scale-95 transition-all">
+                            <a href="https://www.google.com/maps/dir//Arly+heladeria,+Av.+Trinidad+Mor%C3%A1n+a+13,+Cayma+04006/@-16.3925422,-71.5586333,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x91424b952a67587b:0xc04f1ed34bf8a51f!2m2!1d-71.5491061!2d-16.3925422?entry=ttu" target="_blank" class="inline-flex items-center gap-4 bg-primary text-on-primary px-8 md:px-10 py-4 md:py-5 rounded-full font-black text-[10px] md:text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-110 active:scale-95 transition-all w-full md:w-auto justify-center">
                                 Cómo llegar
                                 <span class="material-symbols-outlined text-lg">directions</span>
                             </a>
                         </div>
                     </div>
 
-                    <div class="reveal-on-scroll" style="border-radius:2rem; overflow:hidden; height:600px; box-shadow:0 40px 100px -20px rgba(146,70,90,0.25); border:5px solid rgba(255,255,255,0.7);">
+                    <div class="reveal-on-scroll" style="border-radius:2rem; overflow:hidden; height:400px; md:height:600px; box-shadow:0 40px 100px -20px rgba(146,70,90,0.25); border:5px solid rgba(255,255,255,0.7);">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7655.27013161258!2d-71.55863330642093!3d-16.392542199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b952a67587b%3A0xc04f1ed34bf8a51f!2sArly%20heladeria!5e0!3m2!1ses!2spe!4v1775765440385!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
@@ -403,13 +417,13 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="py-24 px-6 mb-24 max-w-7xl mx-auto reveal-on-scroll">
-            <div class="bg-primary p-20 rounded-[3rem] text-on-primary text-center relative overflow-hidden group">
+        <section class="py-16 md:py-24 px-4 md:px-6 mb-16 md:mb-24 max-w-7xl mx-auto reveal-on-scroll">
+            <div class="bg-primary p-12 md:p-20 rounded-[2rem] md:rounded-[3rem] text-on-primary text-center relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl transition-transform group-hover:scale-110"></div>
                 <div class="relative z-10">
-                    <h2 class="text-5xl font-bold mb-8">¿Listo para refrescar tu día?</h2>
-                    <p class="text-xl mb-12 opacity-90 max-w-xl mx-auto">Pide tus sabores favoritos por WhatsApp y recíbelos en la puerta de tu casa.</p>
-                    <a href="https://wa.me/51951969420" target="_blank" class="bg-white text-primary px-12 py-6 rounded-full font-bold text-xl hover:bg-primary-light hover:text-white transition-all inline-flex items-center gap-4 shadow-2xl">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6 md:mb-8">¿Listo para refrescar tu día?</h2>
+                    <p class="text-base md:text-xl mb-8 md:mb-12 opacity-95 max-w-xl mx-auto font-bold">Pide tus sabores favoritos por WhatsApp y recíbelos en la puerta de tu casa.</p>
+                    <a href="https://wa.me/51951969420" target="_blank" class="bg-white text-primary px-8 md:px-12 py-4 md:py-6 rounded-full font-black text-sm md:text-xl hover:bg-primary-light hover:text-white transition-all inline-flex items-center gap-4 shadow-2xl w-full md:w-auto justify-center">
                         Haz tu Pedido Aquí
                         <span class="material-symbols-outlined font-black">whatsapp</span>
                     </a>
@@ -419,50 +433,31 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-16 bg-[#1a1c1a] px-6">
+    <footer class="py-12 md:py-16 bg-[#1a1c1a] px-4 md:px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-
-            <!-- PALETA HORIZONTAL SVG LOGO -->
-            <a href="#" class="block group">
-                <svg viewBox="0 0 320 90" width="280" height="80" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 4px 12px rgba(212,179,71,0.3));">
-                    <!-- Paleta body (rounded rectangle, horizontal) -->
-                    <rect x="10" y="10" width="270" height="70" rx="35" ry="35" fill="#c9a227" />
-                    <!-- Chocolate drip on top-left -->
-                    <path d="M55 10 Q45 0 55 5 Q65 0 58 10Z" fill="#b8911f" opacity="0.6"/>
-                    <path d="M120 10 Q108 -3 118 4 Q130 -2 122 10Z" fill="#b8911f" opacity="0.5"/>
-                    <path d="M200 10 Q190 -2 200 5 Q210 -2 203 10Z" fill="#b8911f" opacity="0.5"/>
-                    <!-- Shine highlight -->
-                    <ellipse cx="80" cy="35" rx="30" ry="10" fill="white" opacity="0.12"/>
-                    <!-- Stick -->
-                    <rect x="278" y="35" width="30" height="20" rx="8" fill="#d4a862"/>
-                    <!-- Text inside paleta -->
-                    <text x="145" y="56" font-family="Georgia, 'Noto Serif', serif" font-size="24" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-0.5">Arly Helader&#237;a</text>
-                </svg>
-            </a>
-
-            <div class="flex gap-10 font-bold text-[10px] uppercase tracking-[0.3em] text-white/60">
-                <a href="https://www.instagram.com/arly.heladeria?igsh=MWd4dW13MmRlOHU0ZQ%3D%3D" target="_blank" class="hover:text-[#c9a227] transition-colors">Instagram</a>
-                <a href="https://wa.me/51951969420" target="_blank" class="hover:text-[#c9a227] transition-colors">WhatsApp</a>
-                <a href="#" class="hover:text-[#c9a227] transition-colors">Privacidad</a>
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <img src="assets/logo_premium.png" alt="Arly Logo" class="h-16 md:h-24 w-auto drop-shadow-lg">
+                <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">© 2024 Arly Heladería. Arequipa, Perú.</p>
             </div>
 
-            <div class="flex flex-col items-end gap-4">
-                <a href="#inicio" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-[#c9a227] hover:text-white hover:border-transparent transition-all">
+            <div class="flex flex-col items-center gap-6">
+                <div class="flex gap-8 font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-white/80">
+                    <a href="https://www.instagram.com/arly.heladeria?igsh=MWd4dW13MmRlOHU0ZQ%3D%3D" target="_blank" class="hover:text-primary-light transition-colors">Instagram</a>
+                    <a href="https://wa.me/51951969420" target="_blank" class="hover:text-primary-light transition-colors">WhatsApp</a>
+                </div>
+                <a href="#inicio" class="w-10 md:w-12 h-10 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-primary-light hover:text-white hover:border-transparent transition-all">
                     <span class="material-symbols-outlined text-sm">arrow_upward</span>
                 </a>
-                <p class="text-[9px] font-bold uppercase tracking-widest text-white/30">© 2024 Arly Heladería. Arequipa, Perú.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Scroll Reveal Animation Logic
         const revealElements = document.querySelectorAll('.reveal-on-scroll');
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
         };
-
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -471,7 +466,6 @@
                 }
             });
         }, observerOptions);
-
         revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
