@@ -77,30 +77,65 @@
         }
         h1, h2, h3, h4 { font-family: "Noto Serif", serif; letter-spacing: -0.02em; }
         
-        .premium-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 2px solid #92465a; }
-        
-        /* Logo with Paleta Behind (Updated to Premium Logo) */
-        .logo-wrapper {
+        .premium-blur { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 2px solid #92465a; }
+
+        /* === DRIP TITLE EFFECT === */
+        .drip-title {
             position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
+            font-family: 'Noto Serif', serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: #92465a;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            text-shadow: 2px 2px 0px rgba(212, 124, 145, 0.3);
         }
-        .logo-paleta {
+        .drip-title span.drip-letter {
+            display: inline-block;
+            position: relative;
+            animation: letter-wobble 3s ease-in-out infinite;
+        }
+        .drip-title span.drip-letter:nth-child(even) { animation-delay: 0.15s; animation-direction: alternate; }
+        .drip-title span.drip-letter:nth-child(3n) { animation-delay: 0.3s; }
+        @keyframes letter-wobble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        /* Drip drops hanging from the title */
+        .drip-drop {
             position: absolute;
-            z-index: -1;
-            width: 100px;
-            height: 100px;
-            opacity: 0.1;
-            transform: rotate(-15deg);
+            bottom: -22px;
+            width: 10px;
+            height: 14px;
+            border-radius: 0 0 50% 50%;
+            animation: drop-fall 2.5s ease-in-out infinite;
+            pointer-events: none;
         }
-        .logo-image {
-            height: 60px;
-            width: auto;
-            transition: transform 0.3s ease;
+        .drip-drop:nth-child(1) { background: #d47c91; left: 15%; animation-delay: 0s; }
+        .drip-drop:nth-child(2) { background: #f5a623; left: 35%; width: 8px; height: 10px; animation-delay: 0.8s; }
+        .drip-drop:nth-child(3) { background: #92465a; left: 60%; animation-delay: 1.6s; }
+        .drip-drop:nth-child(4) { background: #4a6545; left: 80%; width: 7px; height: 9px; animation-delay: 2.1s; }
+        @keyframes drop-fall {
+            0%   { transform: scaleY(0.5) translateY(0); opacity: 1; }
+            60%  { transform: scaleY(1.4) translateY(6px); opacity: 0.9; }
+            100% { transform: scaleY(0) translateY(20px); opacity: 0; }
         }
+
+        /* Logo wrapper */
+        .logo-wrapper { position: relative; display: inline-flex; align-items: center; padding: 0.5rem 1rem; overflow: visible; }
+        .logo-image { height: 60px; width: auto; transition: transform 0.3s ease; }
         .logo-wrapper:hover .logo-image { transform: scale(1.05) rotate(-2deg); }
+
+        /* === GLASSMORPHISM LOCATION CARD === */
+        .glass-card {
+            background: rgba(250, 249, 246, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1.5px solid rgba(146, 70, 90, 0.15);
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 60px -10px rgba(146, 70, 90, 0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+            padding: 2.5rem;
+        }
 
         /* Catalog Styling */
         .catalog-section {
@@ -179,12 +214,15 @@
     </a>
 
     <!-- Header / Nav -->
-    <nav class="fixed top-0 w-full z-50 bg-[#faf9f6]/80 premium-blur">
+    <nav class="fixed top-0 w-full z-50 bg-[#faf9f6]/85 premium-blur">
         <div class="max-w-7xl mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
             <div class="logo-wrapper">
-                <img src="assets/paleta_logo.png" alt="" class="logo-paleta">
-                <a href="#" class="flex items-center gap-3">
-                    <img src="assets/logo_premium.png" alt="Arly Heladeria Logo" class="logo-image">
+                <a href="#" class="drip-title">
+                    A<span class="drip-letter" style="color:#92465a">r</span><span class="drip-letter" style="color:#d47c91">l</span><span class="drip-letter" style="color:#92465a">y</span>&nbsp;<span class="drip-letter" style="color:#4a6545">H</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#f5a623">l</span><span class="drip-letter" style="color:#92465a">a</span><span class="drip-letter" style="color:#d47c91">d</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#4a6545">r</span><span class="drip-letter" style="color:#92465a">í</span><span class="drip-letter" style="color:#d47c91">a</span>
+                    <div class="drip-drop"></div>
+                    <div class="drip-drop"></div>
+                    <div class="drip-drop"></div>
+                    <div class="drip-drop"></div>
                 </a>
             </div>
             
@@ -317,41 +355,44 @@
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div class="reveal-on-scroll">
-                        <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-6 block">Sede Principal</span>
-                        <h2 class="text-5xl font-bold mb-10 leading-tight">Ubicación & <br/><span class="text-primary italic">Horarios.</span></h2>
-                        
-                        <div class="space-y-10 mb-12">
-                            <div class="flex gap-6 items-center">
-                                <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                                    <span class="material-symbols-outlined text-primary text-xl">location_on</span>
-                                </div>
-                                <div>
-                                    <p class="font-bold text-xl mb-1">Av. Trinidad Morán A-13</p>
-                                    <p class="text-on-surface-variant font-medium">León XIII, Cayma • Arequipa, Perú.</p>
-                                </div>
-                            </div>
+                        <!-- GLASS CARD behind text for readability -->
+                        <div class="glass-card">
+                            <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-6 block">Sede Principal</span>
+                            <h2 class="text-5xl font-bold mb-10 leading-tight text-on-background">Ubicación & <br/><span class="text-primary italic">Horarios.</span></h2>
                             
-                            <div class="flex gap-6 items-center">
-                                <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                                    <span class="material-symbols-outlined text-primary text-xl">schedule</span>
+                            <div class="space-y-8 mb-12">
+                                <div class="flex gap-6 items-center">
+                                    <div class="w-14 h-14 bg-primary/15 rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                        <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-xl mb-1 text-on-background">Av. Trinidad Morán A-13</p>
+                                        <p class="text-on-surface-variant font-medium">León XIII, Cayma • Arequipa, Perú.</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-bold text-xl mb-2">Horarios de Atención</p>
-                                    <div class="text-on-surface-variant font-medium space-y-1">
-                                        <p><span class="font-bold text-primary">Lu - Sá:</span> 9:00 AM — 6:00 PM</p>
-                                        <p><span class="font-bold text-primary">Domingo:</span> 10:00 AM — 5:00 PM</p>
+                                
+                                <div class="flex gap-6 items-center">
+                                    <div class="w-14 h-14 bg-primary/15 rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                        <span class="material-symbols-outlined text-primary text-xl">schedule</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-xl mb-2 text-on-background">Horarios de Atención</p>
+                                        <div class="font-medium space-y-1">
+                                            <p class="text-on-background"><span class="font-bold text-primary">Lu - Sá:</span> 9:00 AM — 6:00 PM</p>
+                                            <p class="text-on-background"><span class="font-bold text-primary">Domingo:</span> 10:00 AM — 5:00 PM</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <a href="https://www.google.com/maps/dir//Arly+heladeria,+Av.+Trinidad+Mor%C3%A1n+a+13,+Cayma+04006/@-16.3925422,-71.5586333,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x91424b952a67587b:0xc04f1ed34bf8a51f!2m2!1d-71.5491061!2d-16.3925422?entry=ttu" target="_blank" class="inline-flex items-center gap-4 bg-primary text-on-primary px-10 py-5 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-110 active:scale-95 transition-all">
-                            Cómo llegar
-                            <span class="material-symbols-outlined text-lg">directions</span>
-                        </a>
+                            <a href="https://www.google.com/maps/dir//Arly+heladeria,+Av.+Trinidad+Mor%C3%A1n+a+13,+Cayma+04006/@-16.3925422,-71.5586333,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x91424b952a67587b:0xc04f1ed34bf8a51f!2m2!1d-71.5491061!2d-16.3925422?entry=ttu" target="_blank" class="inline-flex items-center gap-4 bg-primary text-on-primary px-10 py-5 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-110 active:scale-95 transition-all">
+                                Cómo llegar
+                                <span class="material-symbols-outlined text-lg">directions</span>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="map-wrapper reveal-on-scroll">
+                    <div class="reveal-on-scroll" style="border-radius:2rem; overflow:hidden; height:600px; box-shadow:0 40px 100px -20px rgba(146,70,90,0.25); border:5px solid rgba(255,255,255,0.7);">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7655.27013161258!2d-71.55863330642093!3d-16.392542199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b952a67587b%3A0xc04f1ed34bf8a51f!2sArly%20heladeria!5e0!3m2!1ses!2spe!4v1775765440385!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
