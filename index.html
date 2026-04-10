@@ -125,7 +125,7 @@
 
         /* Logo wrapper */
         .logo-wrapper { position: relative; display: inline-flex; align-items: center; padding: 0.25rem; overflow: visible; }
-        .logo-image-nav { height: 45px; width: auto; transition: transform 0.3s ease; }
+        .logo-image-nav { height: 64px; width: auto; transition: transform 0.3s ease; }
         .logo-wrapper:hover .logo-image-nav { transform: scale(1.05) rotate(-2deg); }
 
         /* === GLASSMORPHISM LOCATION CARD === */
@@ -206,21 +206,26 @@
         #mobile-menu.open { display: flex; }
 
         @media (max-width: 768px) {
-            .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; }
-            .logo-image-nav { height: 38px; margin-right: 4px; }
-            .drip-title { font-size: 1.05rem; }
+            .whatsapp-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
+            .logo-image-nav { height: 44px; margin-right: 4px; }
+            .drip-title { font-size: 1rem; }
             .drip-drop { display: none; }
-            h1 { font-size: 3rem !important; line-height: 1.1 !important; }
-            .glass-card { padding: 1.5rem; border-radius: 1.5rem; }
-            .catalog-section { padding: 1.5rem !important; border-radius: 2rem; }
-            .map-wrapper { height: 300px !important; }
-            .hero-grid { grid-template-columns: 1fr !important; gap: 2rem !important; text-align: center; }
+            h1 { font-size: 2.6rem !important; line-height: 1.1 !important; }
+            .glass-card { padding: 1.25rem; border-radius: 1.5rem; }
+            .catalog-section { padding: 1.25rem !important; border-radius: 1.5rem; }
+            .map-wrapper { height: 280px !important; }
+            .hero-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; text-align: center; }
             .hero-text-align { display: flex; flex-direction: column; align-items: center; }
-            .hero-cta { flex-direction: column; width: 100%; gap: 1rem; }
-            .hero-cta a { width: 100%; text-align: center; }
+            .hero-cta { flex-direction: column; width: 100%; gap: 0.75rem; }
+            .hero-cta a { width: 100%; text-align: center; justify-content: center; }
             .nav-links { display: none; }
-            .logo-wrapper { padding: 0.1rem; }
-            .hero-img-wrapper { max-width: 260px !important; }
+            .logo-wrapper { padding: 0.1rem; max-width: calc(100vw - 120px); overflow: hidden; }
+            .hero-img-wrapper { max-width: 220px !important; }
+            .drip-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+        }
+        @media (max-width: 400px) {
+            .drip-title { display: none; }
+            .logo-image-nav { height: 42px; }
         }
     </style>
 </head>
@@ -240,7 +245,7 @@
         <div class="max-w-7xl mx-auto px-4 md:px-12 py-3 flex justify-between items-center">
             <div class="logo-wrapper">
                 <a href="#" class="flex items-center gap-2">
-                    <img src="assets/logo_circle.png" alt="Arly Logo" class="logo-image-nav">
+                    <img src="assets/logo_a.png" alt="Arly Logo" class="logo-image-nav">
                     <div class="drip-title">
                         A<span class="drip-letter" style="color:#92465a">r</span><span class="drip-letter" style="color:#d47c91">l</span><span class="drip-letter" style="color:#92465a">y</span>&nbsp;<span class="drip-letter" style="color:#4a6545">H</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#f5a623">l</span><span class="drip-letter" style="color:#92465a">a</span><span class="drip-letter" style="color:#d47c91">d</span><span class="drip-letter" style="color:#92465a">e</span><span class="drip-letter" style="color:#4a6545">r</span><span class="drip-letter" style="color:#92465a">í</span><span class="drip-letter" style="color:#d47c91">a</span>
                         <div class="drip-drop"></div>
@@ -282,7 +287,7 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="inicio" class="min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden relative">
+        <section id="inicio" class="min-h-screen flex items-center justify-center px-4 pt-24 md:pt-20 overflow-hidden relative">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center hero-grid">
                 <div class="animate-fade-in-up hero-text-align">
                     <div class="flex items-center gap-3 mb-6">
@@ -296,8 +301,8 @@
                         <a href="#ubicacion" class="border-2 border-primary/20 bg-white/60 backdrop-blur-sm px-8 md:px-12 py-4 md:py-5 rounded-full font-extrabold text-[10px] md:text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Ver Sede</a>
                     </div>
                 </div>
-                <div class="relative flex justify-center lg:justify-end animate-float">
-                    <div class="relative w-full max-w-sm md:max-w-lg hero-img-wrapper">
+                <div class="relative flex justify-center lg:justify-end animate-float overflow-hidden">
+                    <div class="relative w-full max-w-[220px] md:max-w-lg hero-img-wrapper mx-auto">
                         <div class="absolute inset-0 bg-primary/10 rounded-full blur-[100px] scale-150"></div>
                         <img src="assets/chocoframbuesa.png" alt="Paleta Arly Chocoframbuesa" class="relative z-10 w-full object-contain filter drop-shadow-[0_30px_60px_rgba(146,70,90,0.4)]">
                     </div>
@@ -428,7 +433,7 @@
                         </div>
                     </div>
 
-                    <div class="reveal-on-scroll" style="border-radius:2rem; overflow:hidden; height:400px; md:height:600px; box-shadow:0 40px 100px -20px rgba(146,70,90,0.25); border:5px solid rgba(255,255,255,0.7);">
+                    <div class="reveal-on-scroll" style="border-radius:2rem; overflow:hidden; height:300px; box-shadow:0 40px 100px -20px rgba(146,70,90,0.25); border:5px solid rgba(255,255,255,0.7);" class="md:h-[500px]">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7655.27013161258!2d-71.55863330642093!3d-16.392542199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b952a67587b%3A0xc04f1ed34bf8a51f!2sArly%20heladeria!5e0!3m2!1ses!2spe!4v1775765440385!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
@@ -437,7 +442,7 @@
 
         <!-- CTA Section -->
         <section class="py-16 md:py-24 px-4 md:px-6 mb-16 md:mb-24 max-w-7xl mx-auto reveal-on-scroll">
-            <div class="bg-primary p-12 md:p-20 rounded-[2rem] md:rounded-[3rem] text-on-primary text-center relative overflow-hidden group">
+            <div class="bg-primary p-6 md:p-20 rounded-[1.5rem] md:rounded-[3rem] text-on-primary text-center relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl transition-transform group-hover:scale-110"></div>
                 <div class="relative z-10">
                     <h2 class="text-3xl md:text-5xl font-black mb-6 md:mb-8">¿Listo para refrescar tu día?</h2>
@@ -455,7 +460,7 @@
     <footer class="py-12 md:py-16 bg-[#1a1c1a] px-4 md:px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="flex flex-col items-center md:items-start gap-4">
-                <img src="assets/logo_circle.png" alt="Arly Logo" class="h-16 md:h-24 w-auto drop-shadow-lg">
+                <img src="assets/logo_a.png" alt="Arly Logo" class="h-16 md:h-32 w-auto drop-shadow-lg">
                 <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">© 2024 Arly Heladería. Arequipa, Perú.</p>
             </div>
 
