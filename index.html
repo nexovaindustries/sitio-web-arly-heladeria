@@ -418,10 +418,14 @@
         .punto-card {
             background: var(--cream); border: 1.5px solid rgba(200,151,58,0.15);
             border-radius: 1rem; padding: 0.875rem 1rem;
-            display: flex; align-items: center; gap: 0.75rem;
+            display: flex; align-items: flex-start; gap: 0.75rem;
             transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            position: relative;
         }
         .punto-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 12px 28px -8px rgba(61,43,31,0.12); }
+        .punto-num { position:absolute; top:-7px; left:-7px; width:20px; height:20px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:900; color:white; box-shadow:0 2px 6px rgba(200,151,58,0.45); flex-shrink:0; }
+        .punto-card.is-puno { border-color: rgba(100,120,200,0.3); background: rgba(240,242,255,0.7); }
+        .punto-card.is-moquegua { border-color: rgba(200,100,100,0.3); background: rgba(255,242,240,0.7); }
 
         /* ══ HORIZONTAL SCROLL SECTION ════════════════════════════ */
         .h-scroll-track {
@@ -1296,55 +1300,48 @@
     // ══ SHIMMER ANIM ══════════════════════════════════════════════
     // Already handled by CSS
 
-    // ══ PUNTOS DE VENTA — 40 puntos autorizados Arly Heladería ═══
+    // ══ PUNTOS DE VENTA — 34 puntos autorizados Arly Heladería ═══
     const PUNTOS_DE_VENTA = [
-        { nombre: "Arly Heladería — Sede Principal",  distrito: "Cayma",           lat: -16.3925, lng: -71.5491 },
-        { nombre: "Punto de Venta — Umacollo",        distrito: "Umacollo",        lat: -16.4090, lng: -71.5444 },
-        { nombre: "Punto de Venta — Umacollo Sur",    distrito: "Umacollo",        lat: -16.4072, lng: -71.5426 },
-        { nombre: "Punto de Venta — Cayma Centro",    distrito: "Cayma",           lat: -16.3752, lng: -71.5440 },
-        { nombre: "Punto de Venta — El Rosario II",   distrito: "Cayma",           lat: -16.3592, lng: -71.5630 },
-        { nombre: "Punto de Venta — Quinta Samay A",  distrito: "Cayma",           lat: -16.3570, lng: -71.5642 },
-        { nombre: "Punto de Venta — Quinta Samay B",  distrito: "Cayma",           lat: -16.3582, lng: -71.5635 },
-        { nombre: "Punto de Venta — Yanahuara",       distrito: "Yanahuara",       lat: -16.3892, lng: -71.5575 },
-        { nombre: "Punto de Venta — Urb. Artempa",    distrito: "Yanahuara",       lat: -16.3812, lng: -71.5690 },
-        { nombre: "Punto de Venta — Umacollo Norte",  distrito: "Umacollo",        lat: -16.4138, lng: -71.5425 },
-        { nombre: "Punto de Venta — JLB Sur",         distrito: "J.L. Bustamante", lat: -16.4400, lng: -71.5250 },
-        { nombre: "Punto de Venta — Cercado",         distrito: "Cercado",         lat: -16.3960, lng: -71.5420 },
-        { nombre: "Punto de Venta — Miraflores",      distrito: "Miraflores",      lat: -16.4010, lng: -71.5335 },
-        { nombre: "Punto de Venta — Miraflores Norte",distrito: "Miraflores",      lat: -16.3940, lng: -71.5340 },
-        { nombre: "Punto de Venta — Miraflores Este", distrito: "Miraflores",      lat: -16.3892, lng: -71.5178 },
-        { nombre: "Punto de Venta — Yanahuara Sur",   distrito: "Yanahuara",       lat: -16.3855, lng: -71.5540 },
-        { nombre: "Punto de Venta — JLB Centro",      distrito: "J.L. Bustamante", lat: -16.4180, lng: -71.5268 },
-        { nombre: "Punto de Venta — JLB Oeste",       distrito: "J.L. Bustamante", lat: -16.4278, lng: -71.5308 },
-        { nombre: "Punto de Venta — Miraflores C",    distrito: "Miraflores",      lat: -16.4002, lng: -71.5298 },
-        { nombre: "Punto de Venta — Miraflores Sur",  distrito: "Miraflores",      lat: -16.3980, lng: -71.5220 },
-        { nombre: "Punto de Venta — JLB Sur B",       distrito: "J.L. Bustamante", lat: -16.4338, lng: -71.5440 },
-        { nombre: "Punto de Venta — JLB Este",        distrito: "J.L. Bustamante", lat: -16.4370, lng: -71.5228 },
-        { nombre: "Punto de Venta — Miraflores D",    distrito: "Miraflores",      lat: -16.4055, lng: -71.5198 },
-        { nombre: "Punto de Venta — Sachaca",         distrito: "Sachaca",         lat: -16.4132, lng: -71.5590 },
-        { nombre: "Punto de Venta — JLB Norte",       distrito: "J.L. Bustamante", lat: -16.4290, lng: -71.5198 },
-        { nombre: "Punto de Venta — JLB B",           distrito: "J.L. Bustamante", lat: -16.4375, lng: -71.5198 },
-        { nombre: "Punto de Venta — JLB Sur C",       distrito: "J.L. Bustamante", lat: -16.4390, lng: -71.5268 },
-        { nombre: "Punto de Venta — Yanahuara Oeste", distrito: "Yanahuara",       lat: -16.3862, lng: -71.5668 },
-        { nombre: "C. Los Andes 510",                 distrito: "Miraflores",      lat: -16.3712, lng: -71.5222 },
-        { nombre: "Punto de Venta — Miraflores F",    distrito: "Miraflores",      lat: -16.3855, lng: -71.5260 },
-        { nombre: "CONZUMO",                           distrito: "J.L. Bustamante", lat: -16.4272, lng: -71.5450 },
-        { nombre: "C. los Arces 206",                 distrito: "Cayma",           lat: -16.3792, lng: -71.5482 },
-        { nombre: "Super Mercado Choque",             distrito: "Miraflores",      lat: -16.3670, lng: -71.5178 },
-        { nombre: "Annyeong Arequipa",                distrito: "Yanahuara",       lat: -16.3822, lng: -71.5490 },
-        { nombre: "Punto de Venta — Yanahuara B",     distrito: "Yanahuara",       lat: -16.3835, lng: -71.5500 },
-        { nombre: "Punto de Venta — Mariano Melgar",  distrito: "Mariano Melgar",  lat: -16.4370, lng: -71.5042 },
-        { nombre: "Punto de Venta — JLB C",           distrito: "J.L. Bustamante", lat: -16.4252, lng: -71.5140 },
-        { nombre: "DaDan Angeles de Cayma",           distrito: "Cayma",           lat: -16.3692, lng: -71.5618 },
-        { nombre: "Dojo Varuna — AIKIDO AIKIKAI",     distrito: "Cayma",           lat: -16.3670, lng: -71.5522 },
-        { nombre: "SHALOM Av. Parra 379",             distrito: "Sachaca",         lat: -16.4228, lng: -71.5490 },
-        { nombre: "Casa Lago San José",               distrito: "Sachaca",         lat: -16.4380, lng: -71.5490 },
+        { nombre: "Pamer",                        direccion: "Av. Dolores 173",                distrito: "J.L. Bustamante y Rivero", lat: -16.4185, lng: -71.5266 },
+        { nombre: "Bodega Janeth",                direccion: "Lima 709",                       distrito: "Cercado",                  lat: -16.4039, lng: -71.5425 },
+        { nombre: "Librería Arly",                direccion: "Ovalo de Vallecito 123",         distrito: "Cercado",                  lat: -16.4045, lng: -71.5427 },
+        { nombre: "Chapita Market",               direccion: "Túpac Amaru 76",                 distrito: "Cayma",                    lat: -16.3838, lng: -71.5438 },
+        { nombre: "La Despensa",                  direccion: "Alfonso Ugarte",                 distrito: "Cerro Colorado",           lat: -16.3725, lng: -71.5608 },
+        { nombre: "La Petit",                     direccion: "Alfonso Ugarte 701A",            distrito: "Cerro Colorado",           lat: -16.3720, lng: -71.5602 },
+        { nombre: "Bioqhal",                      direccion: "Rimac Mz.C - Lt.5",              distrito: "Yanahuara",                lat: -16.3934, lng: -71.5590 },
+        { nombre: "Qollqa",                       direccion: "Av. Garcilaso de la Vega S/N",   distrito: "Cerro Colorado",           lat: -16.3720, lng: -71.5622 },
+        { nombre: "Piñatería Dayan",              direccion: "Av. Parra 203",                  distrito: "Cercado",                  lat: -16.4082, lng: -71.5421 },
+        { nombre: "Tienda",                       direccion: "Urb. Santa Catalina Mz Q Lt 12", distrito: "J.L. Bustamante y Rivero", lat: -16.4259, lng: -71.5172 },
+        { nombre: "Seoul Korean Restaurant",      direccion: "C. Bolivar 108",                 distrito: "Cercado",                  lat: -16.3975, lng: -71.5381 },
+        { nombre: "Galerías Viza",                direccion: "C. Perú 206",                    distrito: "Cercado",                  lat: -16.4026, lng: -71.5342 },
+        { nombre: "Bodega Yuliana",               direccion: "C. Rivero 401A",                 distrito: "Cercado",                  lat: -16.3961, lng: -71.5328 },
+        { nombre: "Total Miraflores",             direccion: "C. Teniente Rodríguez 1400",     distrito: "Miraflores",               lat: -16.3915, lng: -71.5135 },
+        { nombre: "Bodega Densy",                 direccion: "Ca. Challapampa Mz.A - Lt.3",    distrito: "Yanahuara",                lat: -16.3921, lng: -71.5546 },
+        { nombre: "Certus — SIREN NAILS SPA",     direccion: "JLB 04002",                      distrito: "J.L. Bustamante y Rivero", lat: -16.4229, lng: -71.5203 },
+        { nombre: "Snack Ariquita",               direccion: "Av. Dolores 111",                distrito: "J.L. Bustamante y Rivero", lat: -16.4152, lng: -71.5277 },
+        { nombre: "Codimark",                     direccion: "Conj. Hab. Villa Médica",        distrito: "J.L. Bustamante y Rivero", lat: -16.4229, lng: -71.5203 },
+        { nombre: "Bodega Yoselin",               direccion: "Conj. Hab. Villa Médica",        distrito: "J.L. Bustamante y Rivero", lat: -16.4232, lng: -71.5198 },
+        { nombre: "Market OXXO ADEPA",            direccion: "Av. Dolores",                    distrito: "J.L. Bustamante y Rivero", lat: -16.4185, lng: -71.5266 },
+        { nombre: "Grifo Centenario",             direccion: "Av. Fernandini 100",             distrito: "Sachaca",                  lat: -16.4103, lng: -71.5594 },
+        { nombre: "Bodega Vanessa",               direccion: "Av. Porongoche 707",             distrito: "J.L. Bustamante y Rivero", lat: -16.4180, lng: -71.5159 },
+        { nombre: "Piñatería Casa Arequipa",      direccion: "Av. Pizarro 127",               distrito: "J.L. Bustamante y Rivero", lat: -16.4301, lng: -71.5126 },
+        { nombre: "Salón de Juegos",              direccion: "Av. Dolores 157",               distrito: "J.L. Bustamante y Rivero", lat: -16.4178, lng: -71.5268 },
+        { nombre: "Parque Valle Blanco",          direccion: "Valle Blanco",                   distrito: "Cerro Colorado",           lat: -16.3917, lng: -71.5638 },
+        { nombre: "Haylli Especería",             direccion: "C. Los Andes 510",              distrito: "Alto Selva Alegre",        lat: -16.3835, lng: -71.5174 },
+        { nombre: "CONZUMO",                      direccion: "Ca. Jacinto Ibañez 315",         distrito: "Cercado",                  lat: -16.4212, lng: -71.5455 },
+        { nombre: "DaDan",                        direccion: "C. los Arces 206",               distrito: "Cayma",                    lat: -16.3918, lng: -71.5473 },
+        { nombre: "Supermercado Choque",          direccion: "C. los Arces 206",               distrito: "Cayma",                    lat: -16.3920, lng: -71.5470 },
+        { nombre: "Annyeong Arequipa",            direccion: "Av. Ejército 795",               distrito: "Cayma",                    lat: -16.3883, lng: -71.5512 },
+        { nombre: "Asia Latin Store",             direccion: "Cayma",                          distrito: "Cayma",                    lat: -16.3852, lng: -71.5425 },
+        { nombre: "DaDan Angeles de Cayma",       direccion: "Cayma",                          distrito: "Cayma",                    lat: -16.3391, lng: -71.5451 },
+        { nombre: "Comercial Don Benito",         direccion: "Puno",                           distrito: "Puno",                     lat: -15.8402, lng: -70.0219, region: "puno" },
+        { nombre: "Punto de Venta Moquegua",      direccion: "Ayacucho 615",                   distrito: "Moquegua",                 lat: -17.1922, lng: -70.9311, region: "moquegua" },
     ];
 
     const POP_COLORS = ['#C8973A','#9E6F20','#E8B86D','#C8973A','#9E6F20','#E8B86D','#C8973A','#9E6F20','#E8B86D','#C8973A'];
 
     // ══ LEAFLET MAP ════════════════════════════════════════════════
-    const arlyMap = L.map('arly-map', { zoomControl: true, scrollWheelZoom: false }).setView([-16.3925, -71.5491], 13);
+    const arlyMap = L.map('arly-map', { zoomControl: true, scrollWheelZoom: false }).setView([-16.3925, -71.5491], 12);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '© <a href="https://carto.com/">CARTO</a>',
@@ -1369,24 +1366,33 @@
     }
 
     // Add all markers to map
+    const allLatLngs = [];
     PUNTOS_DE_VENTA.forEach((p, i) => {
         const color  = POP_COLORS[i % POP_COLORS.length];
         const marker = L.marker([p.lat, p.lng], { icon: popIcon(color) }).addTo(arlyMap);
+        allLatLngs.push([p.lat, p.lng]);
+        const regionLabel = p.region === 'puno' ? 'Puno' : p.region === 'moquegua' ? 'Moquegua' : 'Arequipa';
         marker.bindPopup(`
-            <div style="min-width:160px;">
+            <div style="min-width:170px;">
                 <p style="font-weight:900;font-size:0.85rem;color:#3D2B1F;margin-bottom:2px;">${p.nombre}</p>
-                <p style="font-size:0.72rem;color:#9B8C7E;font-weight:600;margin-bottom:10px;">${p.distrito}, Arequipa</p>
+                <p style="font-size:0.72rem;color:#9B8C7E;font-weight:600;margin-bottom:2px;">${p.direccion}</p>
+                <p style="font-size:0.68rem;color:#C8973A;font-weight:700;margin-bottom:10px;">${p.distrito}, ${regionLabel}</p>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}" target="_blank"
                    style="display:inline-flex;align-items:center;gap:6px;background:#C8973A;color:white;padding:7px 14px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;">
                     <svg style="width:12px;height:12px;" fill="currentColor" viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 00-1.42 0l-9 9a1 1 0 000 1.42l9 9a1 1 0 001.42 0l9-9a1 1 0 000-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 011-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
                     Cómo llegar
                 </a>
             </div>
-        `, { maxWidth: 240 });
+        `, { maxWidth: 250 });
     });
 
+    // Fit map to show all 34 markers (including Puno & Moquegua)
+    if (allLatLngs.length) {
+        arlyMap.fitBounds(allLatLngs, { padding: [32, 32] });
+    }
+
     // Fix map size after Lenis/GSAP init
-    setTimeout(() => arlyMap.invalidateSize(), 600);
+    setTimeout(() => { arlyMap.invalidateSize(); if (allLatLngs.length) arlyMap.fitBounds(allLatLngs, { padding: [32, 32] }); }, 600);
 
     // ══ GEOLOCATION — Nearest Point ═══════════════════════════════
     function haversine(lat1, lng1, lat2, lng2) {
@@ -1453,17 +1459,22 @@
         PUNTOS_DE_VENTA.forEach((p, i) => {
             const color = POP_COLORS[i % POP_COLORS.length];
             const card  = document.createElement('div');
-            card.className = 'punto-card';
+            let extraClass = '';
+            if (p.region === 'puno') extraClass = ' is-puno';
+            if (p.region === 'moquegua') extraClass = ' is-moquegua';
+            card.className = 'punto-card' + extraClass;
             card.style.opacity = '0';
             card.innerHTML = `
+                <span class="punto-num">${i + 1}</span>
                 <svg viewBox="0 0 32 48" fill="none" style="width:26px;height:38px;flex-shrink:0;">
                     <rect x="13" y="30" width="6" height="18" rx="3" fill="#e8c17a"/>
                     <rect x="1" y="2" width="30" height="32" rx="12" fill="${color}"/>
                     <ellipse cx="10" cy="10" rx="6" ry="5" fill="rgba(255,255,255,0.3)"/>
                 </svg>
                 <div style="min-width:0;">
-                    <p style="font-weight:900;font-size:0.78rem;color:var(--choco);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.nombre}</p>
-                    <p style="font-size:0.68rem;color:#9B8C7E;font-weight:600;">${p.distrito}</p>
+                    <p style="font-weight:900;font-size:0.78rem;color:var(--choco);line-height:1.2;margin-bottom:2px;">${p.nombre}</p>
+                    <p style="font-size:0.67rem;color:#9B8C7E;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.direccion}</p>
+                    <p style="font-size:0.62rem;color:var(--gold);font-weight:700;margin-top:1px;">${p.distrito}</p>
                 </div>`;
             grid.appendChild(card);
 
@@ -1501,7 +1512,7 @@
             submitBtn.disabled = true;
             submitBtn.querySelector('span:last-child').textContent = 'Enviando...';
             try {
-                const resp = await fetch('https://formspree.io/f/xpzgwjpb', {
+                const resp = await fetch('https://formspree.io/arelygeladeria@gmail.com', {
                     method: 'POST',
                     body: JSON.stringify({
                         nombre:    supplierForm.querySelector('[name=nombre]').value,
