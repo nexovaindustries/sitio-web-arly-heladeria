@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
+    <!-- Leaflet map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
     <!-- Splitting.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css"/>
     <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css"/>
@@ -367,6 +370,22 @@
             width: 0%;
             border-radius: 2px;
         }
+
+        /* ══ LEAFLET MAP OVERRIDES ════════════════════════════════ */
+        #arly-map { border-radius: 1.75rem; z-index: 1; }
+        .leaflet-container { font-family: 'Poppins', sans-serif; }
+        .leaflet-popup-content-wrapper { border-radius: 14px !important; box-shadow: 0 12px 36px rgba(61,43,31,0.18) !important; border: 1.5px solid rgba(200,151,58,0.2); }
+        .leaflet-popup-content { font-family: 'Poppins', sans-serif; margin: 12px 16px !important; }
+        .leaflet-popup-tip { background: white !important; }
+        .pop-marker { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.2s; }
+        .pop-marker:hover { transform: scale(1.2) translateY(-4px); }
+
+        /* ══ GEOLOCATION BANNER ═══════════════════════════════════ */
+        #geo-banner { background: linear-gradient(135deg, var(--choco) 0%, #5C3A27 100%); border-radius: 1.5rem; padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+        #nearest-result { display: none; background: white; border-radius: 1.25rem; border: 1.5px solid rgba(200,151,58,0.25); padding: 1.25rem 1.5rem; }
+        #geo-loader { display: none; }
+        .pulse-dot { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; animation: pulse-anim 1.2s ease-in-out infinite; }
+        @keyframes pulse-anim { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.8);opacity:0.4;} }
 
         /* ══ SUPPLIER FORM ═══════════════════════════════════════ */
         .supplier-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
@@ -800,15 +819,56 @@
                         <span class="line-mask block"><span class="line-inner">Puntos de Venta</span></span>
                         <span class="line-mask block gold-shimmer italic"><span class="line-inner">Autorizados.</span></span>
                     </h2>
-                    <p class="mt-5 text-sm font-medium max-w-md mx-auto gsap-fade" style="color:rgba(61,43,31,0.5);">Encuentra nuestras paletas artesanales en estos puntos seleccionados de Arequipa.</p>
+                    <p class="mt-5 text-sm font-medium max-w-md mx-auto gsap-fade" style="color:rgba(61,43,31,0.5);">Encuentra nuestras paletas artesanales en cualquiera de nuestros puntos autorizados en Arequipa.</p>
                 </div>
 
-                <!-- Map showing main HQ -->
-                <div class="mb-12 gsap-fade" style="border-radius:2rem;overflow:hidden;height:380px;box-shadow:0 30px 80px -15px rgba(61,43,31,0.18);border:4px solid rgba(255,255,255,0.9);">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7655.27013161258!2d-71.55863330642093!3d-16.392542199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b952a67587b%3A0xc04f1ed34bf8a51f!2sArly%20heladeria!5e0!3m2!1ses!2spe!4v1775765440385!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- Geolocation banner -->
+                <div id="geo-banner" class="mb-8 gsap-fade">
+                    <div style="flex-shrink:0;">
+                        <svg viewBox="0 0 32 48" fill="none" style="width:42px;height:56px;" class="pop-float-c">
+                            <rect x="13" y="30" width="6" height="18" rx="3" fill="#e8c17a"/>
+                            <rect x="1" y="2" width="30" height="32" rx="12" fill="#C8973A"/>
+                            <ellipse cx="10" cy="10" rx="6" ry="5" fill="rgba(255,255,255,0.3)"/>
+                        </svg>
+                    </div>
+                    <div style="flex:1;min-width:200px;">
+                        <p style="font-weight:900;font-size:1rem;color:white;margin-bottom:4px;">¿Dónde estás tú?</p>
+                        <p style="font-size:0.8rem;color:rgba(255,255,255,0.6);font-weight:500;">Activa tu ubicación y te mostramos el punto de venta más cercano a ti.</p>
+                    </div>
+                    <div id="geo-loader" style="align-items:center;gap:10px;color:rgba(255,255,255,0.7);font-size:0.8rem;font-weight:600;">
+                        <div class="pulse-dot"></div>
+                        <span>Buscando...</span>
+                    </div>
+                    <button id="geo-btn" onclick="buscarMasCercano()" class="btn-gold magnetic" style="cursor:pointer;white-space:nowrap;flex-shrink:0;">
+                        <span class="material-symbols-outlined text-base" style="position:relative;z-index:1;">my_location</span>
+                        <span>Ver el más cercano</span>
+                    </button>
                 </div>
 
-                <!-- Sales points dynamic grid — populated by JS -->
+                <!-- Nearest result card (hidden until geolocation runs) -->
+                <div id="nearest-result" class="mb-8">
+                    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+                        <div style="width:48px;height:48px;border-radius:14px;background:rgba(200,151,58,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <span class="material-symbols-outlined" style="color:var(--gold);font-size:1.5rem;">location_on</span>
+                        </div>
+                        <div style="flex:1;">
+                            <p style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);margin-bottom:2px;">Punto más cercano a ti</p>
+                            <p id="nearest-name"  style="font-weight:900;font-size:1.1rem;color:var(--choco);"></p>
+                            <p id="nearest-dist"  style="font-size:0.8rem;color:#9B8C7E;font-weight:600;"></p>
+                        </div>
+                        <a id="nearest-link" href="#" target="_blank" class="btn-gold magnetic" style="display:inline-flex;cursor:pointer;font-size:10px;">
+                            <span class="material-symbols-outlined text-sm" style="position:relative;z-index:1;">directions</span>
+                            <span>Cómo llegar</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Leaflet interactive map -->
+                <div class="mb-12 gsap-fade" style="border-radius:2rem;overflow:hidden;height:460px;box-shadow:0 30px 80px -15px rgba(61,43,31,0.18);border:4px solid rgba(255,255,255,0.9);">
+                    <div id="arly-map" style="width:100%;height:100%;"></div>
+                </div>
+
+                <!-- Sales points grid — populated by JS -->
                 <div id="puntos-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"></div>
             </div>
         </section>
@@ -967,6 +1027,8 @@
     </footer>
 
     <!-- ══ SCRIPTS ═════════════════════════════════════════════════ -->
+    <!-- Leaflet map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Splitting.js -->
     <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
     <!-- GSAP + ScrollTrigger -->
@@ -1234,47 +1296,181 @@
     // ══ SHIMMER ANIM ══════════════════════════════════════════════
     // Already handled by CSS
 
-    // ══ PUNTOS DE VENTA — Data array ══════════════════════════════
-    // Actualiza esta lista con tus 40+ puntos de venta reales
+    // ══ PUNTOS DE VENTA — 40 puntos autorizados Arly Heladería ═══
     const PUNTOS_DE_VENTA = [
-        // ← REEMPLAZA CON TUS DATOS REALES →
-        { nombre: "Punto de Venta 1",  distrito: "Cayma" },
-        { nombre: "Punto de Venta 2",  distrito: "Yanahuara" },
-        { nombre: "Punto de Venta 3",  distrito: "Cercado" },
-        { nombre: "Punto de Venta 4",  distrito: "Sachaca" },
-        { nombre: "Punto de Venta 5",  distrito: "Miraflores" },
-        { nombre: "Punto de Venta 6",  distrito: "J.L. Bustamante" },
-        { nombre: "Punto de Venta 7",  distrito: "Paucarpata" },
-        { nombre: "Punto de Venta 8",  distrito: "Alto Selva Alegre" },
-        { nombre: "Punto de Venta 9",  distrito: "Mariano Melgar" },
-        { nombre: "Punto de Venta 10", distrito: "Characato" },
+        { nombre: "Arly Heladería — Sede Principal",  distrito: "Cayma",           lat: -16.3925, lng: -71.5491 },
+        { nombre: "Punto de Venta — Umacollo",        distrito: "Umacollo",        lat: -16.4090, lng: -71.5444 },
+        { nombre: "Punto de Venta — Umacollo Sur",    distrito: "Umacollo",        lat: -16.4072, lng: -71.5426 },
+        { nombre: "Punto de Venta — Cayma Centro",    distrito: "Cayma",           lat: -16.3752, lng: -71.5440 },
+        { nombre: "Punto de Venta — El Rosario II",   distrito: "Cayma",           lat: -16.3592, lng: -71.5630 },
+        { nombre: "Punto de Venta — Quinta Samay A",  distrito: "Cayma",           lat: -16.3570, lng: -71.5642 },
+        { nombre: "Punto de Venta — Quinta Samay B",  distrito: "Cayma",           lat: -16.3582, lng: -71.5635 },
+        { nombre: "Punto de Venta — Yanahuara",       distrito: "Yanahuara",       lat: -16.3892, lng: -71.5575 },
+        { nombre: "Punto de Venta — Urb. Artempa",    distrito: "Yanahuara",       lat: -16.3812, lng: -71.5690 },
+        { nombre: "Punto de Venta — Umacollo Norte",  distrito: "Umacollo",        lat: -16.4138, lng: -71.5425 },
+        { nombre: "Punto de Venta — JLB Sur",         distrito: "J.L. Bustamante", lat: -16.4400, lng: -71.5250 },
+        { nombre: "Punto de Venta — Cercado",         distrito: "Cercado",         lat: -16.3960, lng: -71.5420 },
+        { nombre: "Punto de Venta — Miraflores",      distrito: "Miraflores",      lat: -16.4010, lng: -71.5335 },
+        { nombre: "Punto de Venta — Miraflores Norte",distrito: "Miraflores",      lat: -16.3940, lng: -71.5340 },
+        { nombre: "Punto de Venta — Miraflores Este", distrito: "Miraflores",      lat: -16.3892, lng: -71.5178 },
+        { nombre: "Punto de Venta — Yanahuara Sur",   distrito: "Yanahuara",       lat: -16.3855, lng: -71.5540 },
+        { nombre: "Punto de Venta — JLB Centro",      distrito: "J.L. Bustamante", lat: -16.4180, lng: -71.5268 },
+        { nombre: "Punto de Venta — JLB Oeste",       distrito: "J.L. Bustamante", lat: -16.4278, lng: -71.5308 },
+        { nombre: "Punto de Venta — Miraflores C",    distrito: "Miraflores",      lat: -16.4002, lng: -71.5298 },
+        { nombre: "Punto de Venta — Miraflores Sur",  distrito: "Miraflores",      lat: -16.3980, lng: -71.5220 },
+        { nombre: "Punto de Venta — JLB Sur B",       distrito: "J.L. Bustamante", lat: -16.4338, lng: -71.5440 },
+        { nombre: "Punto de Venta — JLB Este",        distrito: "J.L. Bustamante", lat: -16.4370, lng: -71.5228 },
+        { nombre: "Punto de Venta — Miraflores D",    distrito: "Miraflores",      lat: -16.4055, lng: -71.5198 },
+        { nombre: "Punto de Venta — Sachaca",         distrito: "Sachaca",         lat: -16.4132, lng: -71.5590 },
+        { nombre: "Punto de Venta — JLB Norte",       distrito: "J.L. Bustamante", lat: -16.4290, lng: -71.5198 },
+        { nombre: "Punto de Venta — JLB B",           distrito: "J.L. Bustamante", lat: -16.4375, lng: -71.5198 },
+        { nombre: "Punto de Venta — JLB Sur C",       distrito: "J.L. Bustamante", lat: -16.4390, lng: -71.5268 },
+        { nombre: "Punto de Venta — Yanahuara Oeste", distrito: "Yanahuara",       lat: -16.3862, lng: -71.5668 },
+        { nombre: "C. Los Andes 510",                 distrito: "Miraflores",      lat: -16.3712, lng: -71.5222 },
+        { nombre: "Punto de Venta — Miraflores F",    distrito: "Miraflores",      lat: -16.3855, lng: -71.5260 },
+        { nombre: "CONZUMO",                           distrito: "J.L. Bustamante", lat: -16.4272, lng: -71.5450 },
+        { nombre: "C. los Arces 206",                 distrito: "Cayma",           lat: -16.3792, lng: -71.5482 },
+        { nombre: "Super Mercado Choque",             distrito: "Miraflores",      lat: -16.3670, lng: -71.5178 },
+        { nombre: "Annyeong Arequipa",                distrito: "Yanahuara",       lat: -16.3822, lng: -71.5490 },
+        { nombre: "Punto de Venta — Yanahuara B",     distrito: "Yanahuara",       lat: -16.3835, lng: -71.5500 },
+        { nombre: "Punto de Venta — Mariano Melgar",  distrito: "Mariano Melgar",  lat: -16.4370, lng: -71.5042 },
+        { nombre: "Punto de Venta — JLB C",           distrito: "J.L. Bustamante", lat: -16.4252, lng: -71.5140 },
+        { nombre: "DaDan Angeles de Cayma",           distrito: "Cayma",           lat: -16.3692, lng: -71.5618 },
+        { nombre: "Dojo Varuna — AIKIDO AIKIKAI",     distrito: "Cayma",           lat: -16.3670, lng: -71.5522 },
+        { nombre: "SHALOM Av. Parra 379",             distrito: "Sachaca",         lat: -16.4228, lng: -71.5490 },
+        { nombre: "Casa Lago San José",               distrito: "Sachaca",         lat: -16.4380, lng: -71.5490 },
     ];
 
     const POP_COLORS = ['#C8973A','#9E6F20','#E8B86D','#C8973A','#9E6F20','#E8B86D','#C8973A','#9E6F20','#E8B86D','#C8973A'];
+
+    // ══ LEAFLET MAP ════════════════════════════════════════════════
+    const arlyMap = L.map('arly-map', { zoomControl: true, scrollWheelZoom: false }).setView([-16.3925, -71.5491], 13);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd', maxZoom: 19
+    }).addTo(arlyMap);
+
+    // Custom popsicle SVG icon
+    function popIcon(color) {
+        return L.divIcon({
+            className: '',
+            html: `<div class="pop-marker">
+                <svg viewBox="0 0 32 48" fill="none" style="width:28px;height:40px;filter:drop-shadow(0 3px 6px rgba(61,43,31,0.25));">
+                    <rect x="13" y="30" width="6" height="18" rx="3" fill="#e8c17a"/>
+                    <rect x="1" y="2" width="30" height="32" rx="12" fill="${color}"/>
+                    <ellipse cx="10" cy="10" rx="6" ry="5" fill="rgba(255,255,255,0.35)"/>
+                </svg>
+            </div>`,
+            iconSize:   [28, 40],
+            iconAnchor: [14, 40],
+            popupAnchor:[0, -44]
+        });
+    }
+
+    // Add all markers to map
+    PUNTOS_DE_VENTA.forEach((p, i) => {
+        const color  = POP_COLORS[i % POP_COLORS.length];
+        const marker = L.marker([p.lat, p.lng], { icon: popIcon(color) }).addTo(arlyMap);
+        marker.bindPopup(`
+            <div style="min-width:160px;">
+                <p style="font-weight:900;font-size:0.85rem;color:#3D2B1F;margin-bottom:2px;">${p.nombre}</p>
+                <p style="font-size:0.72rem;color:#9B8C7E;font-weight:600;margin-bottom:10px;">${p.distrito}, Arequipa</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}" target="_blank"
+                   style="display:inline-flex;align-items:center;gap:6px;background:#C8973A;color:white;padding:7px 14px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;">
+                    <svg style="width:12px;height:12px;" fill="currentColor" viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 00-1.42 0l-9 9a1 1 0 000 1.42l9 9a1 1 0 001.42 0l9-9a1 1 0 000-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 011-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+                    Cómo llegar
+                </a>
+            </div>
+        `, { maxWidth: 240 });
+    });
+
+    // Fix map size after Lenis/GSAP init
+    setTimeout(() => arlyMap.invalidateSize(), 600);
+
+    // ══ GEOLOCATION — Nearest Point ═══════════════════════════════
+    function haversine(lat1, lng1, lat2, lng2) {
+        const R = 6371, dLat = (lat2-lat1)*Math.PI/180, dLng = (lng2-lng1)*Math.PI/180;
+        const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function buscarMasCercano() {
+        const btn    = document.getElementById('geo-btn');
+        const loader = document.getElementById('geo-loader');
+        if (!navigator.geolocation) {
+            alert('Tu navegador no soporta geolocalización.');
+            return;
+        }
+        btn.style.display = 'none';
+        loader.style.display = 'flex';
+
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const { latitude: uLat, longitude: uLng } = pos.coords;
+                let nearest = null, minDist = Infinity;
+                PUNTOS_DE_VENTA.forEach(p => {
+                    const d = haversine(uLat, uLng, p.lat, p.lng);
+                    if (d < minDist) { minDist = d; nearest = p; }
+                });
+
+                loader.style.display = 'none';
+                btn.style.display = 'flex';
+
+                if (nearest) {
+                    const distText = minDist < 1
+                        ? `A ${Math.round(minDist * 1000)} metros de ti`
+                        : `A ${minDist.toFixed(1)} km de ti`;
+                    document.getElementById('nearest-name').textContent = nearest.nombre;
+                    document.getElementById('nearest-dist').textContent = `${distText} · ${nearest.distrito}`;
+                    document.getElementById('nearest-link').href = `https://www.google.com/maps/dir/?api=1&origin=${uLat},${uLng}&destination=${nearest.lat},${nearest.lng}`;
+
+                    const result = document.getElementById('nearest-result');
+                    result.style.display = 'block';
+                    gsap.fromTo(result, { opacity:0, y:20 }, { opacity:1, y:0, duration:0.7, ease:'power3.out' });
+
+                    // Add user location + nearest marker on map
+                    const userIcon = L.divIcon({
+                        html: `<div style="width:16px;height:16px;background:#C8973A;border:3px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(61,43,31,0.4);"></div>`,
+                        className: '', iconSize:[16,16], iconAnchor:[8,8]
+                    });
+                    L.marker([uLat, uLng], { icon: userIcon }).addTo(arlyMap).bindPopup('<strong>Tú estás aquí</strong>').openPopup();
+                    arlyMap.flyTo([nearest.lat, nearest.lng], 16, { duration: 1.5 });
+                }
+            },
+            () => {
+                loader.style.display = 'none';
+                btn.style.display = 'flex';
+                alert('No pudimos obtener tu ubicación. Asegúrate de permitir el acceso.');
+            },
+            { timeout: 10000, maximumAge: 60000 }
+        );
+    }
+
+    // ══ PUNTOS GRID ════════════════════════════════════════════════
     const grid = document.getElementById('puntos-grid');
     if (grid && PUNTOS_DE_VENTA.length) {
         PUNTOS_DE_VENTA.forEach((p, i) => {
             const color = POP_COLORS[i % POP_COLORS.length];
-            grid.innerHTML += `
-            <div class="punto-card gsap-card" style="opacity:0;">
-                <svg viewBox="0 0 32 48" fill="none" style="width:28px;height:40px;flex-shrink:0;">
+            const card  = document.createElement('div');
+            card.className = 'punto-card';
+            card.style.opacity = '0';
+            card.innerHTML = `
+                <svg viewBox="0 0 32 48" fill="none" style="width:26px;height:38px;flex-shrink:0;">
                     <rect x="13" y="30" width="6" height="18" rx="3" fill="#e8c17a"/>
                     <rect x="1" y="2" width="30" height="32" rx="12" fill="${color}"/>
                     <ellipse cx="10" cy="10" rx="6" ry="5" fill="rgba(255,255,255,0.3)"/>
                 </svg>
                 <div style="min-width:0;">
-                    <p style="font-weight:900;font-size:0.78rem;color:var(--choco);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.nombre}</p>
+                    <p style="font-weight:900;font-size:0.78rem;color:var(--choco);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.nombre}</p>
                     <p style="font-size:0.68rem;color:#9B8C7E;font-weight:600;">${p.distrito}</p>
-                </div>
-            </div>`;
-        });
+                </div>`;
+            grid.appendChild(card);
 
-        // Re-run GSAP on newly added cards
-        grid.querySelectorAll('.gsap-card').forEach((card, i) => {
             gsap.fromTo(card,
-                { opacity: 0, y: 40, scale: 0.96 },
-                { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out', delay: (i % 4) * 0.08,
-                  scrollTrigger: { trigger: card, start: 'top 92%', toggleActions: 'play none none none' } }
+                { opacity: 0, y: 35, scale: 0.96 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'power3.out', delay: (i % 5) * 0.07,
+                  scrollTrigger: { trigger: card, start: 'top 94%', toggleActions: 'play none none none' } }
             );
         });
     }
@@ -1283,14 +1479,10 @@
     document.querySelectorAll('.stat-num').forEach(el => {
         const target = parseInt(el.dataset.target);
         ScrollTrigger.create({
-            trigger: el,
-            start: 'top 85%',
-            once: true,
+            trigger: el, start: 'top 85%', once: true,
             onEnter: () => {
                 gsap.to({ val: 0 }, {
-                    val: target,
-                    duration: 1.8,
-                    ease: 'power2.out',
+                    val: target, duration: 1.8, ease: 'power2.out',
                     onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
                 });
             }
@@ -1308,17 +1500,25 @@
             e.preventDefault();
             submitBtn.disabled = true;
             submitBtn.querySelector('span:last-child').textContent = 'Enviando...';
-
             try {
-                const resp = await fetch(supplierForm.action, {
+                const resp = await fetch('https://formspree.io/f/xpzgwjpb', {
                     method: 'POST',
-                    body: new FormData(supplierForm),
-                    headers: { 'Accept': 'application/json' }
+                    body: JSON.stringify({
+                        nombre:    supplierForm.querySelector('[name=nombre]').value,
+                        telefono:  supplierForm.querySelector('[name=telefono]').value,
+                        negocio:   supplierForm.querySelector('[name=negocio]').value,
+                        email:     supplierForm.querySelector('[name=email]').value,
+                        direccion: supplierForm.querySelector('[name=direccion]').value,
+                        mensaje:   supplierForm.querySelector('[name=mensaje]').value,
+                        _replyto:  supplierForm.querySelector('[name=email]').value,
+                        _subject:  'Nuevo interesado en ser proveedor — Arly Heladería'
+                    }),
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
                 });
                 if (resp.ok) {
                     supplierForm.style.display = 'none';
                     formSuccess.style.display = 'block';
-                    gsap.fromTo(formSuccess, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' });
+                    gsap.fromTo(formSuccess, { opacity:0, y:20 }, { opacity:1, y:0, duration:0.6, ease:'power3.out' });
                 } else {
                     formError.style.display = 'block';
                     submitBtn.disabled = false;
@@ -1331,17 +1531,6 @@
             }
         });
     }
-
-    // ══ SECTION ENTRANCE — new sections ═══════════════════════════
-    gsap.utils.toArray('#proveedor .line-inner, section:has(#puntos-grid) .line-inner').forEach(el => {
-        if (!el.closest('#inicio')) {
-            gsap.fromTo(el,
-                { y: '105%' },
-                { y: '0%', duration: 1, ease: 'power4.out',
-                  scrollTrigger: { trigger: el.closest('.line-mask') || el, start: 'top 88%', toggleActions: 'play none none none' } }
-            );
-        }
-    });
 
     </script>
 </body>
