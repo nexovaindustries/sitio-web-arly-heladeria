@@ -1492,8 +1492,8 @@
 
             // Click → scroll to map, fly to marker, open popup
             card.addEventListener('click', () => {
-                const mapSection = document.getElementById('ubicacion');
-                if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const mapSection = document.getElementById('arly-map');
+                if (mapSection) mapSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 setTimeout(() => {
                     arlyMap.flyTo([p.lat, p.lng], 17, { duration: 1.3 });
                     setTimeout(() => arlyMarkers[i].openPopup(), 1350);
