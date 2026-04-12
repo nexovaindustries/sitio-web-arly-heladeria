@@ -488,7 +488,7 @@
             .whatsapp-float { width: 52px; height: 52px; bottom: 20px; right: 20px; }
             #cursor, #cursor-follower { display: none; }
             body { cursor: auto; }
-            .btn-gold, .btn-outline, .catalog-tab, .nav-link, a, button { cursor: pointer !important; }
+            .btn-gold, .btn-outline, .catalog-tab, .nav-link, a, button, .punto-card { cursor: pointer !important; }
 
             /* Hero floating tags — hidden on mobile to avoid overflow */
             #tag1, #tag2 { display: none !important; }
@@ -1640,7 +1640,7 @@
             if (p.region === 'puno') extraClass = ' is-puno';
             if (p.region === 'moquegua') extraClass = ' is-moquegua';
             card.className = 'punto-card' + extraClass;
-            card.style.cssText = 'opacity:0;cursor:pointer;';
+            card.style.cssText = 'opacity:0;';
             card.title = `Ver en el mapa: ${p.nombre}`;
             card.innerHTML = `
                 <span class="punto-num">${i + 1}</span>
